@@ -30,7 +30,7 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
   ```sh
   mkdir my-project && cd my-project
   git init
-  git remote add skeleton https://github.com/amercier/npm-package-skeleton.git
+  git remote add skeleton https://github.com/amercier/files-by-directory.git
   git remote set-url skeleton --push "Error: skeleton remote is read-only" # Disable pushing on skeleton
   git config remote.skeleton.tagOpt --no-tags # Disable fetching tags on skeleton
   git remote add origin <YOUR GIT REPOSITORY URL>
@@ -42,7 +42,7 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
   **Warning:** this will erase all existing code and git
   history on master branch, use `git reflog` if you ever need to rollback.
   ```sh
-  git remote add skeleton https://github.com/amercier/npm-package-skeleton.git
+  git remote add skeleton https://github.com/amercier/files-by-directory.git
   git remote set-url skeleton --push "Error: skeleton remote is read-only"
   git show-ref --verify --quiet refs/heads/master || git branch master # Create master branch if needed
   [[ refs/heads/master == $(git symbolic-ref --quiet HEAD) ]] || git checkout master # Switch to master branch
@@ -55,7 +55,7 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
 
 3. Replace the following occurrences
 
-- [ ] `amercier/npm-package-skeleton` → _your repo slug_
+- [ ] `amercier/files-by-directory` → _your repo slug_
 - [ ] `npm-package-skeleton` → _your project name_
 - [ ] `package-skeleton` → _your NPM package name_
 - [ ] `Alex Mercier` → _your name_
@@ -102,12 +102,12 @@ This project is released under [ISC License](LICENSE.md).
 # npm-package-skeleton
 
 [![Latest Stable Version](https://img.shields.io/npm/v/package-skeleton.svg)](https://www.npmjs.com/package/package-skeleton)
-[![Build Status](https://img.shields.io/travis/amercier/npm-package-skeleton/master.svg)](https://travis-ci.org/amercier/npm-package-skeleton)
+[![Build Status](https://img.shields.io/travis/amercier/files-by-directory/master.svg)](https://travis-ci.org/amercier/files-by-directory)
 [![NPM Downloads](https://img.shields.io/npm/dm/package-skeleton.svg)](https://www.npmjs.com/package/package-skeleton)
 
-[![dependencies Status](https://david-dm.org/amercier/npm-package-skeleton/status.svg)](https://david-dm.org/amercier/npm-package-skeleton)
-[![Test Coverage](https://img.shields.io/codecov/c/github/amercier/npm-package-skeleton/master.svg)](https://codecov.io/github/amercier/npm-package-skeleton?branch=master)
-[![API Documentation](https://doc.esdoc.org/github.com/amercier/npm-package-skeleton/badge.svg)](https://doc.esdoc.org/github.com/amercier/npm-package-skeleton/)
+[![dependencies Status](https://david-dm.org/amercier/files-by-directory/status.svg)](https://david-dm.org/amercier/files-by-directory)
+[![Test Coverage](https://img.shields.io/codecov/c/github/amercier/files-by-directory/master.svg)](https://codecov.io/github/amercier/files-by-directory?branch=master)
+[![API Documentation](https://doc.esdoc.org/github.com/amercier/files-by-directory/badge.svg)](https://doc.esdoc.org/github.com/amercier/files-by-directory/)
 
 ## Installation
 
@@ -129,7 +129,7 @@ Prerequisites: [Node.js](https://nodejs.org/) 6+, **npm** 3+.
 
 Please refer to the [guidelines for contributing](./CONTRIBUTING.md).
 
-[![devDependencies Status](https://david-dm.org/amercier/npm-package-skeleton/dev-status.svg)](https://david-dm.org/amercier/npm-package-skeleton?type=dev)
+[![devDependencies Status](https://david-dm.org/amercier/files-by-directory/dev-status.svg)](https://david-dm.org/amercier/files-by-directory?type=dev)
 
 ## License
 
@@ -137,4 +137,4 @@ Please refer to the [guidelines for contributing](./CONTRIBUTING.md).
 
 ---
 
-<sup>_Created with [npm-p&#97;ckage-skeleton](https://github.com/amercier/npm-package-skeleton)._</sup>
+<sup>_Created with [npm-p&#97;ckage-skeleton](https://github.com/amercier/files-by-directory)._</sup>
