@@ -1,4 +1,4 @@
-# npm-package-skeleton
+# files-by-directory
 
 Skeleton of a simple NPM Package with Babel and CI already configured.
 
@@ -56,7 +56,7 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
 3. Replace the following occurrences
 
 - [ ] `amercier/files-by-directory` → _your repo slug_
-- [ ] `npm-package-skeleton` → _your project name_
+- [ ] `files-by-directory` → _your project name_
 - [ ] `package-skeleton` → _your NPM package name_
 - [ ] `Alex Mercier` → _your name_
 - [ ] `pro.alexandre.mercier@gmail.com` → _your public email address_
@@ -99,7 +99,7 @@ This project is released under [ISC License](LICENSE.md).
 
 ## **Note:** the content after this is the actual package documentation (to be edited after cloning).
 
-# npm-package-skeleton
+# files-by-directory
 
 [![Latest Stable Version](https://img.shields.io/npm/v/package-skeleton.svg)](https://www.npmjs.com/package/package-skeleton)
 [![Build Status](https://img.shields.io/travis/amercier/files-by-directory/master.svg)](https://travis-ci.org/amercier/files-by-directory)

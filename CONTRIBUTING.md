@@ -39,7 +39,7 @@ npm test
 ```
 
 ```log
-> package-skeleton@1.0.4 test ./npm-package-skeleton
+> package-skeleton@1.0.4 test ./files-by-directory
 > jest
 
  PASS  specs/lib/index.spec.js
