@@ -57,7 +57,7 @@ Skeleton of a simple NPM Package with Babel and CI already configured.
 
 - [ ] `amercier/files-by-directory` → _your repo slug_
 - [ ] `files-by-directory` → _your project name_
-- [ ] `package-skeleton` → _your NPM package name_
+- [ ] `files-by-directory` → _your NPM package name_
 - [ ] `Alex Mercier` → _your name_
 - [ ] `pro.alexandre.mercier@gmail.com` → _your public email address_
 - [ ] `https://amercier.com` → _your website_
@@ -101,9 +101,9 @@ This project is released under [ISC License](LICENSE.md).
 
 # files-by-directory
 
-[![Latest Stable Version](https://img.shields.io/npm/v/package-skeleton.svg)](https://www.npmjs.com/package/package-skeleton)
+[![Latest Stable Version](https://img.shields.io/npm/v/files-by-directory.svg)](https://www.npmjs.com/package/files-by-directory)
 [![Build Status](https://img.shields.io/travis/amercier/files-by-directory/master.svg)](https://travis-ci.org/amercier/files-by-directory)
-[![NPM Downloads](https://img.shields.io/npm/dm/package-skeleton.svg)](https://www.npmjs.com/package/package-skeleton)
+[![NPM Downloads](https://img.shields.io/npm/dm/files-by-directory.svg)](https://www.npmjs.com/package/files-by-directory)
 
 [![dependencies Status](https://david-dm.org/amercier/files-by-directory/status.svg)](https://david-dm.org/amercier/files-by-directory)
 [![Test Coverage](https://img.shields.io/codecov/c/github/amercier/files-by-directory/master.svg)](https://codecov.io/github/amercier/files-by-directory?branch=master)
@@ -113,17 +113,17 @@ This project is released under [ISC License](LICENSE.md).
 
 Prerequisites: [Node.js](https://nodejs.org/) 6+, **npm** 3+.
 
-    npm install --save package-skeleton
+    npm install --save files-by-directory
 
 ## Usage
 
 ### ES5
 
-    var xxx = require('package-skeleton').default;
+    var xxx = require('files-by-directory').default;
 
 ### ES2015+
 
-    import xxx from 'package-skeleton';
+    import xxx from 'files-by-directory';
 
 ## Contributing
 
@@ -133,7 +133,7 @@ Please refer to the [guidelines for contributing](./CONTRIBUTING.md).
 
 ## License
 
-[![License](https://img.shields.io/npm/l/package-skeleton.svg)](LICENSE.md)
+[![License](https://img.shields.io/npm/l/files-by-directory.svg)](LICENSE.md)
 
 ---
 
