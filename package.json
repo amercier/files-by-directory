@@ -1,7 +1,7 @@
 {
   "name": "files-by-directory",
-  "version": "1.0.5",
-  "description": "Skeleton of a simple NPM Package with Babel and CI already configured.",
+  "version": "0.0.0",
+  "description": "List files by directory recursively, using async generators.",
   "license": "ISC",
   "repository": {
     "type": "git",
@@ -31,19 +31,15 @@
   ],
   "main": "dist/index.js",
   "keywords": [
-    "package",
-    "skeleton",
-    "example",
-    "node",
-    "npm",
-    "babel",
-    "ci",
-    "code",
-    "codecov",
-    "coverage",
-    "eslint",
-    "gemnasium",
-    "jest"
+    "list",
+    "scan",
+    "files",
+    "directories",
+    "async",
+    "generators",
+    "for",
+    "await",
+    "of"
   ],
   "dependencies": {},
   "devDependencies": {
