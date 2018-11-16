@@ -2,9 +2,9 @@
 
 ## Issues
 
-Feel free to [open an issue](https://github.com/amercier/npm-package-skeleton/issues/new),
-or propose a [pull request](https://github.com/amercier/npm-package-skeleton/pulls).
-To prevent duplication, please look at [existing issues](https://github.com/amercier/npm-package-skeleton/issues?q=is%3Aissue) before posting a new one.
+Feel free to [open an issue](https://github.com/amercier/files-by-directory/issues/new),
+or propose a [pull request](https://github.com/amercier/files-by-directory/pulls).
+To prevent duplication, please look at [existing issues](https://github.com/amercier/files-by-directory/issues?q=is%3Aissue) before posting a new one.
 
 ## TL;DR
 
@@ -21,7 +21,7 @@ To prevent duplication, please look at [existing issues](https://github.com/amer
 _**Prerequisites:** you need to have `git`, `node` (>=6) and `npm` installed_.
 
 ```bash
-git clone https://github.com/amercier/npm-package-skeleton.git
+git clone https://github.com/amercier/files-by-directory.git
 ```
 
 _(or your clone's Git URL)_
@@ -39,7 +39,7 @@ npm test
 ```
 
 ```log
-> package-skeleton@1.0.4 test ./npm-package-skeleton
+> files-by-directory@1.0.4 test ./files-by-directory
 > jest
 
  PASS  specs/lib/index.spec.js

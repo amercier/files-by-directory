@@ -16,7 +16,7 @@ script:
   - '[[ "$REPORT_COVERAGE" != true ]] || codecov'
 after_success: >
   if [ "$TRAVIS_PULL_REQUEST" = "false" ] && [ "$BUILD_DOCS" = "true" ]; then
-    bash <(curl -s https://gist.githubusercontent.com/amercier/9d41002c79ac8e9fbd36bc1815d934b1/raw/) amercier/npm-package-skeleton;
+    bash <(curl -s https://gist.githubusercontent.com/amercier/9d41002c79ac8e9fbd36bc1815d934b1/raw/) amercier/files-by-directory;
   fi
 deploy:
   provider: npm
@@ -25,7 +25,7 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    repo: amercier/npm-package-skeleton # Prevents publishing on PRs
+    repo: amercier/files-by-directory # Prevents publishing on PRs
     condition: $NPM_DEPLOY = true # Prevents publishing on each matrix build
 cache:
   directories:
