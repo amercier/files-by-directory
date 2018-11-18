@@ -1,9 +1,3 @@
-/**
- * Exported module
- * @type {Boolean}
- */
-function myModule() {
-  return true;
-}
+import filesByDirectory from './files-by-directory';
 
-export default myModule;
+module.exports = filesByDirectory;

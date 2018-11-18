@@ -1,12 +1,17 @@
-import myModule from '.';
+import filesByDirectory from './files-by-directory';
 
-/** @test {myModule} */
-describe('myModule', () => {
+const moduleExport = require('.');
+
+describe('module export', () => {
   it('exists', () => {
-    expect(myModule).toBeDefined();
+    expect(moduleExport).toBeDefined();
   });
 
-  it('returns true', () => {
-    expect(myModule()).toBe(true);
+  it('is a function', () => {
+    expect(moduleExport).toBeFunction();
+  });
+
+  it('is identical to filesByDirectory', () => {
+    expect(moduleExport).toBe(filesByDirectory);
   });
 });
