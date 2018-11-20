@@ -41,7 +41,9 @@
     "await",
     "of"
   ],
-  "dependencies": {},
+  "dependencies": {
+    "regenerator-runtime": "^0.13.1"
+  },
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.5",
@@ -120,7 +122,13 @@
       "browser": false
     },
     "rules": {
-      "no-restricted-syntax": 0
+      "no-restricted-syntax": 0,
+      "no-unused-vars": [
+        "error",
+        {
+          "varsIgnorePattern": "^regeneratorRuntime$"
+        }
+      ]
     },
     "overrides": [
       {
