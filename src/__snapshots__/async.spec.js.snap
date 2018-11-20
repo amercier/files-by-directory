@@ -1,0 +1,145 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`asyncFlattenMap when iterable is a a synchronous iterator and fn is a synchronous generator yields expected values asynchronously 1`] = `"foo1"`;
+
+exports[`asyncFlattenMap when iterable is a a synchronous iterator and fn is a synchronous generator yields expected values asynchronously 2`] = `"foo2"`;
+
+exports[`asyncFlattenMap when iterable is a a synchronous iterator and fn is a synchronous generator yields expected values asynchronously 3`] = `"foo3"`;
+
+exports[`asyncFlattenMap when iterable is a a synchronous iterator and fn is a synchronous generator yields expected values asynchronously 4`] = `"bar1"`;
+
+exports[`asyncFlattenMap when iterable is a a synchronous iterator and fn is a synchronous generator yields expected values asynchronously 5`] = `"bar2"`;
+
+exports[`asyncFlattenMap when iterable is a a synchronous iterator and fn is a synchronous generator yields expected values asynchronously 6`] = `"bar3"`;
+
+exports[`asyncFlattenMap when iterable is a a synchronous iterator and fn is a synchronous generator yields expected values asynchronously 7`] = `"baz1"`;
+
+exports[`asyncFlattenMap when iterable is a a synchronous iterator and fn is a synchronous generator yields expected values asynchronously 8`] = `"baz2"`;
+
+exports[`asyncFlattenMap when iterable is a a synchronous iterator and fn is a synchronous generator yields expected values asynchronously 9`] = `"baz3"`;
+
+exports[`asyncFlattenMap when iterable is a a synchronous iterator and fn is an asynchronous generator yields expected values asynchronously 1`] = `"foo1"`;
+
+exports[`asyncFlattenMap when iterable is a a synchronous iterator and fn is an asynchronous generator yields expected values asynchronously 2`] = `"foo2"`;
+
+exports[`asyncFlattenMap when iterable is a a synchronous iterator and fn is an asynchronous generator yields expected values asynchronously 3`] = `"foo3"`;
+
+exports[`asyncFlattenMap when iterable is a a synchronous iterator and fn is an asynchronous generator yields expected values asynchronously 4`] = `"bar1"`;
+
+exports[`asyncFlattenMap when iterable is a a synchronous iterator and fn is an asynchronous generator yields expected values asynchronously 5`] = `"bar2"`;
+
+exports[`asyncFlattenMap when iterable is a a synchronous iterator and fn is an asynchronous generator yields expected values asynchronously 6`] = `"bar3"`;
+
+exports[`asyncFlattenMap when iterable is a a synchronous iterator and fn is an asynchronous generator yields expected values asynchronously 7`] = `"baz1"`;
+
+exports[`asyncFlattenMap when iterable is a a synchronous iterator and fn is an asynchronous generator yields expected values asynchronously 8`] = `"baz2"`;
+
+exports[`asyncFlattenMap when iterable is a a synchronous iterator and fn is an asynchronous generator yields expected values asynchronously 9`] = `"baz3"`;
+
+exports[`asyncFlattenMap when iterable is a an array and fn is a synchronous generator yields expected values asynchronously 1`] = `"foo1"`;
+
+exports[`asyncFlattenMap when iterable is a an array and fn is a synchronous generator yields expected values asynchronously 2`] = `"foo2"`;
+
+exports[`asyncFlattenMap when iterable is a an array and fn is a synchronous generator yields expected values asynchronously 3`] = `"foo3"`;
+
+exports[`asyncFlattenMap when iterable is a an array and fn is a synchronous generator yields expected values asynchronously 4`] = `"bar1"`;
+
+exports[`asyncFlattenMap when iterable is a an array and fn is a synchronous generator yields expected values asynchronously 5`] = `"bar2"`;
+
+exports[`asyncFlattenMap when iterable is a an array and fn is a synchronous generator yields expected values asynchronously 6`] = `"bar3"`;
+
+exports[`asyncFlattenMap when iterable is a an array and fn is a synchronous generator yields expected values asynchronously 7`] = `"baz1"`;
+
+exports[`asyncFlattenMap when iterable is a an array and fn is a synchronous generator yields expected values asynchronously 8`] = `"baz2"`;
+
+exports[`asyncFlattenMap when iterable is a an array and fn is a synchronous generator yields expected values asynchronously 9`] = `"baz3"`;
+
+exports[`asyncFlattenMap when iterable is a an array and fn is an asynchronous generator yields expected values asynchronously 1`] = `"foo1"`;
+
+exports[`asyncFlattenMap when iterable is a an array and fn is an asynchronous generator yields expected values asynchronously 2`] = `"foo2"`;
+
+exports[`asyncFlattenMap when iterable is a an array and fn is an asynchronous generator yields expected values asynchronously 3`] = `"foo3"`;
+
+exports[`asyncFlattenMap when iterable is a an array and fn is an asynchronous generator yields expected values asynchronously 4`] = `"bar1"`;
+
+exports[`asyncFlattenMap when iterable is a an array and fn is an asynchronous generator yields expected values asynchronously 5`] = `"bar2"`;
+
+exports[`asyncFlattenMap when iterable is a an array and fn is an asynchronous generator yields expected values asynchronously 6`] = `"bar3"`;
+
+exports[`asyncFlattenMap when iterable is a an array and fn is an asynchronous generator yields expected values asynchronously 7`] = `"baz1"`;
+
+exports[`asyncFlattenMap when iterable is a an array and fn is an asynchronous generator yields expected values asynchronously 8`] = `"baz2"`;
+
+exports[`asyncFlattenMap when iterable is a an array and fn is an asynchronous generator yields expected values asynchronously 9`] = `"baz3"`;
+
+exports[`asyncFlattenMap when iterable is a an asynchronous iterator and fn is a synchronous generator yields expected values asynchronously 1`] = `"foo1"`;
+
+exports[`asyncFlattenMap when iterable is a an asynchronous iterator and fn is a synchronous generator yields expected values asynchronously 2`] = `"foo2"`;
+
+exports[`asyncFlattenMap when iterable is a an asynchronous iterator and fn is a synchronous generator yields expected values asynchronously 3`] = `"foo3"`;
+
+exports[`asyncFlattenMap when iterable is a an asynchronous iterator and fn is a synchronous generator yields expected values asynchronously 4`] = `"bar1"`;
+
+exports[`asyncFlattenMap when iterable is a an asynchronous iterator and fn is a synchronous generator yields expected values asynchronously 5`] = `"bar2"`;
+
+exports[`asyncFlattenMap when iterable is a an asynchronous iterator and fn is a synchronous generator yields expected values asynchronously 6`] = `"bar3"`;
+
+exports[`asyncFlattenMap when iterable is a an asynchronous iterator and fn is a synchronous generator yields expected values asynchronously 7`] = `"baz1"`;
+
+exports[`asyncFlattenMap when iterable is a an asynchronous iterator and fn is a synchronous generator yields expected values asynchronously 8`] = `"baz2"`;
+
+exports[`asyncFlattenMap when iterable is a an asynchronous iterator and fn is a synchronous generator yields expected values asynchronously 9`] = `"baz3"`;
+
+exports[`asyncFlattenMap when iterable is a an asynchronous iterator and fn is an asynchronous generator yields expected values asynchronously 1`] = `"foo1"`;
+
+exports[`asyncFlattenMap when iterable is a an asynchronous iterator and fn is an asynchronous generator yields expected values asynchronously 2`] = `"foo2"`;
+
+exports[`asyncFlattenMap when iterable is a an asynchronous iterator and fn is an asynchronous generator yields expected values asynchronously 3`] = `"foo3"`;
+
+exports[`asyncFlattenMap when iterable is a an asynchronous iterator and fn is an asynchronous generator yields expected values asynchronously 4`] = `"bar1"`;
+
+exports[`asyncFlattenMap when iterable is a an asynchronous iterator and fn is an asynchronous generator yields expected values asynchronously 5`] = `"bar2"`;
+
+exports[`asyncFlattenMap when iterable is a an asynchronous iterator and fn is an asynchronous generator yields expected values asynchronously 6`] = `"bar3"`;
+
+exports[`asyncFlattenMap when iterable is a an asynchronous iterator and fn is an asynchronous generator yields expected values asynchronously 7`] = `"baz1"`;
+
+exports[`asyncFlattenMap when iterable is a an asynchronous iterator and fn is an asynchronous generator yields expected values asynchronously 8`] = `"baz2"`;
+
+exports[`asyncFlattenMap when iterable is a an asynchronous iterator and fn is an asynchronous generator yields expected values asynchronously 9`] = `"baz3"`;
+
+exports[`asyncMap when iterable is a a synchronous iterator and fn is a synchronous function yields expected values asynchronously 1`] = `"quxfoo"`;
+
+exports[`asyncMap when iterable is a a synchronous iterator and fn is a synchronous function yields expected values asynchronously 2`] = `"quxbar"`;
+
+exports[`asyncMap when iterable is a a synchronous iterator and fn is a synchronous function yields expected values asynchronously 3`] = `"quxbaz"`;
+
+exports[`asyncMap when iterable is a a synchronous iterator and fn is an asynchronous function yields expected values asynchronously 1`] = `"quxfoo"`;
+
+exports[`asyncMap when iterable is a a synchronous iterator and fn is an asynchronous function yields expected values asynchronously 2`] = `"quxbar"`;
+
+exports[`asyncMap when iterable is a a synchronous iterator and fn is an asynchronous function yields expected values asynchronously 3`] = `"quxbaz"`;
+
+exports[`asyncMap when iterable is a an array and fn is a synchronous function yields expected values asynchronously 1`] = `"quxfoo"`;
+
+exports[`asyncMap when iterable is a an array and fn is a synchronous function yields expected values asynchronously 2`] = `"quxbar"`;
+
+exports[`asyncMap when iterable is a an array and fn is a synchronous function yields expected values asynchronously 3`] = `"quxbaz"`;
+
+exports[`asyncMap when iterable is a an array and fn is an asynchronous function yields expected values asynchronously 1`] = `"quxfoo"`;
+
+exports[`asyncMap when iterable is a an array and fn is an asynchronous function yields expected values asynchronously 2`] = `"quxbar"`;
+
+exports[`asyncMap when iterable is a an array and fn is an asynchronous function yields expected values asynchronously 3`] = `"quxbaz"`;
+
+exports[`asyncMap when iterable is a an asynchronous iterator and fn is a synchronous function yields expected values asynchronously 1`] = `"quxfoo"`;
+
+exports[`asyncMap when iterable is a an asynchronous iterator and fn is a synchronous function yields expected values asynchronously 2`] = `"quxbar"`;
+
+exports[`asyncMap when iterable is a an asynchronous iterator and fn is a synchronous function yields expected values asynchronously 3`] = `"quxbaz"`;
+
+exports[`asyncMap when iterable is a an asynchronous iterator and fn is an asynchronous function yields expected values asynchronously 1`] = `"quxfoo"`;
+
+exports[`asyncMap when iterable is a an asynchronous iterator and fn is an asynchronous function yields expected values asynchronously 2`] = `"quxbar"`;
+
+exports[`asyncMap when iterable is a an asynchronous iterator and fn is an asynchronous function yields expected values asynchronously 3`] = `"quxbaz"`;
