@@ -1,6 +1,6 @@
 {
   "name": "files-by-directory",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "List files by directory recursively, using async generators.",
   "license": "ISC",
   "repository": {
