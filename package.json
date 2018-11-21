@@ -24,7 +24,8 @@
     "lint:prettier": "prettier --ignore-path .gitignore --list-different '**/*.{js,json,md,yml}'",
     "lint": "run-p lint:*",
     "start": "cross-env NODE_ENV=development jest --watch --notify",
-    "test": "jest"
+    "test": "jest",
+    "demo": "babel-node demo"
   },
   "files": [
     "dist"
@@ -47,6 +48,7 @@
   "devDependencies": {
     "@babel/cli": "^7.1.5",
     "@babel/core": "^7.1.5",
+    "@babel/node": "^7.0.0",
     "@babel/plugin-proposal-async-generator-functions": "^7.1.0",
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.1.5",

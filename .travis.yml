@@ -19,6 +19,7 @@ script:
   - '[[ "$BUILD_DOCS" != true ]] || npm run doc' # Ensures ESDoc generation doesn't fail
   - '[[ "$REPORT_COVERAGE" != true ]] || codecov'
   - node "${DEMO-demo}"
+  - npm run demo
 after_success: >
   if [ "$TRAVIS_PULL_REQUEST" = "false" ] && [ "$BUILD_DOCS" = "true" ]; then
     bash <(curl -s https://gist.githubusercontent.com/amercier/9d41002c79ac8e9fbd36bc1815d934b1/raw/) amercier/files-by-directory;
