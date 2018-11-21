@@ -1,0 +1,189 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`File getChildren() when isDirectory is true generates children asynchronously when file is a directory 1`] = `
+Array [
+  File {
+    "isDirectory": false,
+    "path": "fixture/level1/level2/file2a",
+  },
+  File {
+    "isDirectory": false,
+    "path": "fixture/level1/level2/file2b",
+  },
+  File {
+    "isDirectory": true,
+    "path": "fixture/level1/level2/level3",
+  },
+  File {
+    "isDirectory": false,
+    "path": "fixture/level1/level2/link-to-directory",
+  },
+  File {
+    "isDirectory": false,
+    "path": "fixture/level1/level2/link-to-grand-parent-directory",
+  },
+  File {
+    "isDirectory": false,
+    "path": "fixture/level1/level2/link-to-parent-directory",
+  },
+]
+`;
+
+exports[`File getChildren() when isDirectory is true generates children asynchronously when symlink links to an existing directory 1`] = `
+Array [
+  File {
+    "isDirectory": false,
+    "path": "fixture/level1/link-to-sibling-directory/file2a",
+  },
+  File {
+    "isDirectory": false,
+    "path": "fixture/level1/link-to-sibling-directory/file2b",
+  },
+  File {
+    "isDirectory": true,
+    "path": "fixture/level1/link-to-sibling-directory/level3",
+  },
+  File {
+    "isDirectory": false,
+    "path": "fixture/level1/link-to-sibling-directory/link-to-directory",
+  },
+  File {
+    "isDirectory": false,
+    "path": "fixture/level1/link-to-sibling-directory/link-to-grand-parent-directory",
+  },
+  File {
+    "isDirectory": false,
+    "path": "fixture/level1/link-to-sibling-directory/link-to-parent-directory",
+  },
+]
+`;
+
+exports[`File getFilesByDirectory() generates asynchronously an array containing the file when path is a file 1`] = `
+Array [
+  File {
+    "isDirectory": false,
+    "path": "fixture/level1/file1a",
+  },
+]
+`;
+
+exports[`File getFilesByDirectory() generates asynchronously an array of files when given path is a directory containing only files 1`] = `
+Array [
+  File {
+    "isDirectory": false,
+    "path": "fixture/level1/level2/level3/file3a",
+  },
+  File {
+    "isDirectory": false,
+    "path": "fixture/level1/level2/level3/file3b",
+  },
+]
+`;
+
+exports[`File getFilesByDirectory() generates one array be directory when given path is a directory containing sub-directories 1`] = `
+Array [
+  File {
+    "isDirectory": false,
+    "path": "fixture/level1/level2/level3/file3a",
+  },
+  File {
+    "isDirectory": false,
+    "path": "fixture/level1/level2/level3/file3b",
+  },
+]
+`;
+
+exports[`File getFilesByDirectory() generates one array be directory when given path is a directory containing sub-directories 2`] = `
+Array [
+  File {
+    "isDirectory": false,
+    "path": "fixture/level1/level2/file2a",
+  },
+  File {
+    "isDirectory": false,
+    "path": "fixture/level1/level2/file2b",
+  },
+  File {
+    "isDirectory": false,
+    "path": "fixture/level1/level2/link-to-directory",
+  },
+  File {
+    "isDirectory": false,
+    "path": "fixture/level1/level2/link-to-grand-parent-directory",
+  },
+  File {
+    "isDirectory": false,
+    "path": "fixture/level1/level2/link-to-parent-directory",
+  },
+]
+`;
+
+exports[`File static fromPath() resolves with an instance of File when file is a directory 1`] = `
+File {
+  "isDirectory": true,
+  "path": "fixture/level1/level2",
+}
+`;
+
+exports[`File static fromPath() resolves with an instance of File when file is a file 1`] = `
+File {
+  "isDirectory": false,
+  "path": "fixture/level1/file1a",
+}
+`;
+
+exports[`File static fromPath() resolves with and instance of File when symlink links to an existing directory 1`] = `
+File {
+  "isDirectory": false,
+  "path": "fixture/level1/link-to-sibling-directory",
+}
+`;
+
+exports[`File static fromPath() resolves with and instance of File when symlink links to an existing file 1`] = `
+File {
+  "isDirectory": false,
+  "path": "fixture/level1/link-to-sibling-file",
+}
+`;
+
+exports[`File static fromPath() resolves with and instance of File when symlink links to unexisting file 1`] = `
+File {
+  "isDirectory": false,
+  "path": "fixture/level1/link-to-unexisting-file",
+}
+`;
+
+exports[`File static fromPaths() generates instances of File asynchronously 1`] = `
+File {
+  "isDirectory": false,
+  "path": "fixture/level1/file1a",
+}
+`;
+
+exports[`File static fromPaths() generates instances of File asynchronously 2`] = `
+File {
+  "isDirectory": true,
+  "path": "fixture/level1/level2",
+}
+`;
+
+exports[`File static fromPaths() generates instances of File asynchronously 3`] = `
+File {
+  "isDirectory": false,
+  "path": "fixture/level1/link-to-sibling-file",
+}
+`;
+
+exports[`File static fromPaths() generates instances of File asynchronously 4`] = `
+File {
+  "isDirectory": false,
+  "path": "fixture/level1/link-to-sibling-directory",
+}
+`;
+
+exports[`File static fromPaths() generates instances of File asynchronously 5`] = `
+File {
+  "isDirectory": false,
+  "path": "fixture/level1/link-to-unexisting-file",
+}
+`;
