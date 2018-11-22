@@ -50,20 +50,14 @@ export default class File {
    *
    * @async
    * @generator
-   * @param {string[]} Array of already processed path
    * @yields {Promise<File[]>} Generates one array of File instances per directory.
    */
-  async *getFilesByDirectory(processedPaths = []) {
-    if (processedPaths.indexOf(this.path) !== -1) {
-      return;
-    }
-    processedPaths.push(this.path);
-
+  async *getFilesByDirectory() {
     if (this.isDirectory) {
       const files = [];
       for await (const child of this.getChildren()) {
         if (child.isDirectory) {
-          yield* child.getFilesByDirectory(processedPaths);
+          yield* child.getFilesByDirectory();
         } else {
           files.push(child);
         }

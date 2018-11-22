@@ -1,6 +1,8 @@
 import regeneratorRuntime from 'regenerator-runtime';
-import { asyncMap, asyncFlattenMap, values } from './async';
+import { asyncMap, asyncFlattenMap } from './async';
 import File from './file';
+import { isUniqueAndNotDescendant } from './path';
+
 /**
  * Generate array of file paths for each directory, recursively.
  *
@@ -14,15 +16,10 @@ import File from './file';
  * @yields {Promise<File[]>} Generates one array of File instances per directory.
  */
 export default async function* filesByDirectory(paths) {
-  const unordered = await values(File.fromPaths(paths));
-  const ordered = [
-    ...unordered.filter(file => file.isDirectory),
-    ...unordered.filter(file => !file.isDirectory),
-  ];
-  const processedPaths = [];
-
-  yield* asyncMap(
-    asyncFlattenMap(ordered, file => file.getFilesByDirectory(processedPaths)),
-    files => files.map(file => file.path),
+  const filesIterator = asyncFlattenMap(
+    File.fromPaths(paths.filter(isUniqueAndNotDescendant)),
+    file => file.getFilesByDirectory(),
   );
+
+  yield* asyncMap(filesIterator, files => files.map(file => file.path));
 }

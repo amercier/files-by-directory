@@ -43,6 +43,7 @@
     "of"
   ],
   "dependencies": {
+    "escape-string-regexp": "^1.0.5",
     "regenerator-runtime": "^0.13.1"
   },
   "devDependencies": {
