@@ -1,7 +1,15 @@
 import '@babel/polyfill'; // Required for NodeJS < 10
 import { values } from './async';
 import getFilesByDirectory from './files-by-directory';
-import { existingFile, existingDirectory, directoryWithoutSubdirectories } from '../fixture';
+import {
+  existingFile,
+  existingDirectory,
+  directoryWithoutSubdirectories,
+  level2,
+  level2Files,
+  level3,
+  level3Files,
+} from '../fixture';
 
 /** @test {filesByDirectory} */
 describe('filesByDirectory', () => {
@@ -24,11 +32,7 @@ describe('filesByDirectory', () => {
   });
 
   it('omits double directory paths', async () => {
-    expect(
-      await values(
-        getFilesByDirectory([directoryWithoutSubdirectories, directoryWithoutSubdirectories]),
-      ),
-    ).toMatchSnapshot();
+    expect(await values(getFilesByDirectory([level3, level3]))).toMatchSnapshot();
   });
 
   it('omits double file paths', async () => {
@@ -36,31 +40,18 @@ describe('filesByDirectory', () => {
   });
 
   it('omits descendant directory paths', async () => {
-    expect(
-      await values(getFilesByDirectory([existingDirectory, directoryWithoutSubdirectories])),
-    ).toMatchSnapshot();
-
-    expect(
-      await values(getFilesByDirectory([directoryWithoutSubdirectories, existingDirectory])),
-    ).toMatchSnapshot();
+    expect(await values(getFilesByDirectory([level2, level3]))).toMatchSnapshot();
+    expect(await values(getFilesByDirectory([level3, level2]))).toMatchSnapshot();
   });
 
   it('omits descendant file paths', async () => {
-    expect(
-      await values(
-        getFilesByDirectory([
-          `${directoryWithoutSubdirectories}/file3a`,
-          directoryWithoutSubdirectories,
-        ]),
-      ),
-    ).toMatchSnapshot();
-    expect(
-      await values(
-        getFilesByDirectory([
-          directoryWithoutSubdirectories,
-          `${directoryWithoutSubdirectories}/file3a`,
-        ]),
-      ),
-    ).toMatchSnapshot();
+    expect(await values(getFilesByDirectory([level3, level3Files[0]]))).toMatchSnapshot();
+    expect(await values(getFilesByDirectory([level3Files[0], level3]))).toMatchSnapshot();
+  });
+
+  it('groups regular files by parent path', async () => {
+    expect(await values(getFilesByDirectory(level3Files))).toMatchSnapshot();
+    expect(await values(getFilesByDirectory([...level2Files, ...level3Files]))).toMatchSnapshot();
+    expect(await values(getFilesByDirectory([...level3Files, ...level2Files]))).toMatchSnapshot();
   });
 });
