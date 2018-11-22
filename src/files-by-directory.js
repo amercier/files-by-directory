@@ -1,5 +1,5 @@
 import regeneratorRuntime from 'regenerator-runtime';
-import { asyncMap, asyncFlattenMap, values } from './async';
+import { asyncMap, asyncFlattenMap } from './async';
 import File from './file';
 import { isDescendant } from './path';
 
@@ -21,13 +21,8 @@ export default async function* filesByDirectory(paths) {
     (path, i) => !paths.some((other, j) => (j > i && path === other) || isDescendant(path, other)),
   );
 
-  const unordered = await values(File.fromPaths(cleanPaths));
-  const ordered = [
-    ...unordered.filter(file => file.isDirectory),
-    ...unordered.filter(file => !file.isDirectory),
-  ];
-
-  yield* asyncMap(asyncFlattenMap(ordered, file => file.getFilesByDirectory()), files =>
-    files.map(file => file.path),
+  yield* asyncMap(
+    asyncFlattenMap(File.fromPaths(cleanPaths), file => file.getFilesByDirectory()),
+    files => files.map(file => file.path),
   );
 }
