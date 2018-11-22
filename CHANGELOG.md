@@ -5,7 +5,9 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
-(nothing)
+### Fixed
+
+- Improved descendant paths detection - see #4
 
 ## [v0.1.0] - 2018-11-21
 
