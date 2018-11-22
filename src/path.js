@@ -33,3 +33,16 @@ export function isAscendant(subject, descendant) {
 export function isDescendant(subject, ascendant) {
   return isAscendant(ascendant, subject);
 }
+
+/**
+ * Whether a path is unique and does not have any ascendant within an array of paths.
+ *
+ * @param {string} path A path.
+ * @param {number} index Index of `path` with
+ * @param {string[]} paths Array of paths.
+ * @returns {boolean} `true` if `path` is both unique and do not have any ascendant within `paths`,
+ * `false` otherwise.
+ */
+export function isUniqueAndNotDescendant(path, index, paths) {
+  return paths.indexOf(path) === index && !paths.some(p => isAscendant(p, path));
+}

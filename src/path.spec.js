@@ -1,4 +1,4 @@
-import { ascendanceRegExp, isAscendant, isDescendant } from './path';
+import { ascendanceRegExp, isAscendant, isDescendant, isUniqueAndNotDescendant } from './path';
 
 describe('ascendanceRegExp', () => {
   it('is a RegExp', () => {
@@ -83,5 +83,39 @@ describe('isDescendant', () => {
 
   it('returns false when subject has different root', () => {
     expect(isDescendant('/foo/bar', '/baz/bar')).toBe(false);
+  });
+});
+
+describe('isUniqueAndNotDescendant', () => {
+  it('is a function', () => {
+    expect(isUniqueAndNotDescendant).toBeFunction();
+  });
+
+  it('returns true for the first double', () => {
+    expect(isUniqueAndNotDescendant('foo', 0, ['foo', 'bar', 'foo', 'baz'])).toBe(true);
+  });
+
+  it('returns false for the second double', () => {
+    expect(isUniqueAndNotDescendant('foo', 2, ['foo', 'bar', 'foo', 'baz'])).toBe(false);
+  });
+
+  it('returns false for a descendant after an ascendant', () => {
+    expect(isUniqueAndNotDescendant('foo/bar', 1, ['foo', 'foo/bar', 'baz'])).toBe(false);
+  });
+
+  it('returns false for a descendant before an ascendant', () => {
+    expect(isUniqueAndNotDescendant('foo/bar', 0, ['foo/bar', 'foo', 'baz'])).toBe(false);
+  });
+
+  it('returns true for an ascendant after an descendant', () => {
+    expect(isUniqueAndNotDescendant('foo', 1, ['foo/bar', 'foo', 'baz'])).toBe(true);
+  });
+
+  it('returns true for an ascendant before an descendant', () => {
+    expect(isUniqueAndNotDescendant('foo', 0, ['foo', 'foo/bar', 'baz'])).toBe(true);
+  });
+
+  it('returns true for a unique path', () => {
+    expect(isUniqueAndNotDescendant('bar', 1, ['foo', 'bar', 'baz'])).toBe(true);
   });
 });
