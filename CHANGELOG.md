@@ -7,7 +7,7 @@ All notable changes to this project will be documented in this file. The format 
 
 ### Fixed
 
-- Improved descendant paths detection - see #4
+- Improved descendant paths detection - [#4]
 
 ## [v0.1.0] - 2018-11-21
 
@@ -27,5 +27,6 @@ All notable changes to this project will be documented in this file. The format 
 
 [keep a changelog]: https://keepachangelog.com/en/1.0.0/
 [semantic versioning]: (https://semver.org/spec/v2.0.0.html
-[v0.1.0]: https://github.com/amercier/hiplog/compare/v0.0.0...v0.1.0
-[unreleased]: https://github.com/amercier/hiplog/compare/v0.1.0...HEAD
+[#4]: https://github.com/amercier/files-by-directory/pull/4
+[v0.1.0]: https://github.com/amercier/(https://github.com/amercier/files-by-directory/pull/4)/compare/v0.0.0...v0.1.0
+[unreleased]: https://github.com/amercier/(https://github.com/amercier/files-by-directory/pull/4)/compare/v0.1.0...HEAD
