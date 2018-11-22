@@ -33,6 +33,47 @@ Array [
 ]
 `;
 
+exports[`filesByDirectory groups regular files by parent path 1`] = `
+Array [
+  Array [
+    "fixture/level1/level2/level3/file3a",
+    "fixture/level1/level2/level3/file3b",
+  ],
+]
+`;
+
+exports[`filesByDirectory groups regular files by parent path 2`] = `
+Array [
+  Array [
+    "fixture/level1/level2/file2a",
+    "fixture/level1/level2/file2b",
+    "fixture/level1/level2/link-to-directory",
+    "fixture/level1/level2/link-to-grand-parent-directory",
+    "fixture/level1/level2/link-to-parent-directory",
+  ],
+  Array [
+    "fixture/level1/level2/level3/file3a",
+    "fixture/level1/level2/level3/file3b",
+  ],
+]
+`;
+
+exports[`filesByDirectory groups regular files by parent path 3`] = `
+Array [
+  Array [
+    "fixture/level1/level2/level3/file3a",
+    "fixture/level1/level2/level3/file3b",
+  ],
+  Array [
+    "fixture/level1/level2/file2a",
+    "fixture/level1/level2/file2b",
+    "fixture/level1/level2/link-to-directory",
+    "fixture/level1/level2/link-to-grand-parent-directory",
+    "fixture/level1/level2/link-to-parent-directory",
+  ],
+]
+`;
+
 exports[`filesByDirectory omits descendant directory paths 1`] = `
 Array [
   Array [
