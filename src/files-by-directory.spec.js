@@ -23,11 +23,7 @@ describe('filesByDirectory', () => {
     expect(await values(getFilesByDirectory([existingDirectory]))).toMatchSnapshot();
   });
 
-  it('omits previously processed files', async () => {
-    expect(await values(getFilesByDirectory([existingFile, existingFile]))).toMatchSnapshot();
-  });
-
-  it('omits previously processed directories', async () => {
+  it('omits double directory paths', async () => {
     expect(
       await values(
         getFilesByDirectory([directoryWithoutSubdirectories, directoryWithoutSubdirectories]),
@@ -35,13 +31,36 @@ describe('filesByDirectory', () => {
     ).toMatchSnapshot();
   });
 
-  it('omits previously processed nested directories', async () => {
+  it('omits double file paths', async () => {
+    expect(await values(getFilesByDirectory([existingFile, existingFile]))).toMatchSnapshot();
+  });
+
+  it('omits descendant directory paths', async () => {
     expect(
       await values(getFilesByDirectory([existingDirectory, directoryWithoutSubdirectories])),
     ).toMatchSnapshot();
 
     expect(
       await values(getFilesByDirectory([directoryWithoutSubdirectories, existingDirectory])),
+    ).toMatchSnapshot();
+  });
+
+  it('omits descendant file paths', async () => {
+    expect(
+      await values(
+        getFilesByDirectory([
+          `${directoryWithoutSubdirectories}/file3a`,
+          directoryWithoutSubdirectories,
+        ]),
+      ),
+    ).toMatchSnapshot();
+    expect(
+      await values(
+        getFilesByDirectory([
+          directoryWithoutSubdirectories,
+          `${directoryWithoutSubdirectories}/file3a`,
+        ]),
+      ),
     ).toMatchSnapshot();
   });
 });
