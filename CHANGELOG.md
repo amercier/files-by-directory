@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+(nothing)
+
+## [v0.1.1] - 2018-11-22
+
 ### Fixed
 
 - Improved descendant paths detection - [#4]
@@ -29,5 +33,6 @@ All notable changes to this project will be documented in this file. The format 
 [semantic versioning]: (https://semver.org/spec/v2.0.0.html
 [#3]: https://github.com/amercier/files-by-directory/pull/3
 [#4]: https://github.com/amercier/files-by-directory/pull/4
-[v0.1.0]: https://github.com/amercier/(https://github.com/amercier/files-by-directory/pull/4)/compare/v0.0.0...v0.1.0
-[unreleased]: https://github.com/amercier/(https://github.com/amercier/files-by-directory/pull/4)/compare/v0.1.0...HEAD
+[v0.1.0]: https://github.com/amercier/files-by-directory/compare/v0.0.0...v0.1.0
+[v0.1.1]: https://github.com/amercier/files-by-directory/compare/v0.1.0...v0.1.1
+[unreleased]: https://github.com/amercier/files-by-directory/compare/v0.1.1...HEAD
