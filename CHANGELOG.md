@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+(nothing)
+
+## [v0.1.2] - 2018-11-22
+
 ### Fixed
 
 - Fixed passed paths to siblings files not being grouping together - [#5]
@@ -38,4 +42,5 @@ All notable changes to this project will be documented in this file. The format 
 [#5]: https://github.com/amercier/files-by-directory/pull/5
 [v0.1.0]: https://github.com/amercier/files-by-directory/compare/v0.0.0...v0.1.0
 [v0.1.1]: https://github.com/amercier/files-by-directory/compare/v0.1.0...v0.1.1
-[unreleased]: https://github.com/amercier/files-by-directory/compare/v0.1.1...HEAD
+[v0.1.1]: https://github.com/amercier/files-by-directory/compare/v0.1.1...v0.1.2
+[unreleased]: https://github.com/amercier/files-by-directory/compare/v0.1.2...HEAD
