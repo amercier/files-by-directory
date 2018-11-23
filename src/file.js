@@ -40,11 +40,7 @@ export default class File {
       throw new Error(`File is not a directory: ${this}`);
     }
 
-    yield* asyncMap(await readDir(this.path, { withFileTypes: true }), child =>
-      typeof child === 'string'
-        ? this.constructor.fromPath(join(this.path, child)) // withFileTypes requires Node 10+
-        : this.constructor.fromDirent(this.path, child),
-    );
+    yield* this.constructor.readDir(this.path);
   }
 
   /**
@@ -103,9 +99,23 @@ export default class File {
    * @async
    * @generator
    * @param {string[]} paths Paths of the file.
-   * @yields {Promise<File>} One instance of File per path.
+   * @returns {AsyncGenenerator<File>} One instance of File per path.
    */
   static fromPaths(paths) {
     return asyncMap(paths, this.fromPath);
+  }
+
+  /**
+   * Create instance of files from a directory path.
+   *
+   * @param {string} directory Directory path.
+   * @returns {AsyncGenenerator<File>} An asynchronous generator of files.
+   */
+  static async *readDir(directory) {
+    yield* asyncMap(await readDir(directory, { withFileTypes: true }), child =>
+      typeof child === 'string'
+        ? this.fromPath(join(directory, child)) // withFileTypes requires Node 10+
+        : this.fromDirent(directory, child),
+    );
   }
 }

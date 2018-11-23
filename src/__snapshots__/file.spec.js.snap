@@ -107,7 +107,7 @@ Array [
 ]
 `;
 
-exports[`File getFilesByDirectory() generates asynchronously one array containing the file when file is an unexisting file 1`] = `
+exports[`File getFilesByDirectory() generates asynchronously one array containing the file when file is an non-existing file 1`] = `
 Array [
   Array [
     File {
@@ -313,7 +313,7 @@ File {
 }
 `;
 
-exports[`File static fromPath() resolves with and instance of File when symlink links to an existing directory 1`] = `
+exports[`File static fromPath() resolves with and instance of File when symlink links to a directory 1`] = `
 File {
   "isDirectory": false,
   "isSymbolicLink": true,
@@ -321,7 +321,7 @@ File {
 }
 `;
 
-exports[`File static fromPath() resolves with and instance of File when symlink links to an existing file 1`] = `
+exports[`File static fromPath() resolves with and instance of File when symlink links to a file 1`] = `
 File {
   "isDirectory": false,
   "isSymbolicLink": true,
@@ -329,7 +329,7 @@ File {
 }
 `;
 
-exports[`File static fromPath() resolves with and instance of File when symlink links to unexisting file 1`] = `
+exports[`File static fromPath() resolves with and instance of File when symlink links to non-existing file 1`] = `
 File {
   "isDirectory": false,
   "isSymbolicLink": true,
@@ -375,4 +375,134 @@ File {
   "isSymbolicLink": true,
   "path": "fixture/level1/link-to-unexisting-file",
 }
+`;
+
+exports[`File static readDir() generates asynchronously one File instance per child when path is a directory 1`] = `
+Array [
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": false,
+    "path": "fixture/level1/level2/level3/file3a",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": false,
+    "path": "fixture/level1/level2/level3/file3b",
+  },
+]
+`;
+
+exports[`File static readDir() generates asynchronously one File instance per child when path is a directory 2`] = `
+Array [
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": false,
+    "path": "fixture/level1/level2/file2a",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": false,
+    "path": "fixture/level1/level2/file2b",
+  },
+  File {
+    "isDirectory": true,
+    "isSymbolicLink": false,
+    "path": "fixture/level1/level2/level3",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": true,
+    "path": "fixture/level1/level2/link-to-directory",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": true,
+    "path": "fixture/level1/level2/link-to-grand-parent-directory",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": true,
+    "path": "fixture/level1/level2/link-to-parent-directory",
+  },
+]
+`;
+
+exports[`File static readDir() generates asynchronously one File instance per child when path is a directory 3`] = `
+Array [
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": false,
+    "path": "fixture/level1/file1a",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": false,
+    "path": "fixture/level1/file1b",
+  },
+  File {
+    "isDirectory": true,
+    "isSymbolicLink": false,
+    "path": "fixture/level1/level2",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": true,
+    "path": "fixture/level1/link-to-descendant-directory",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": true,
+    "path": "fixture/level1/link-to-descendant-file",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": true,
+    "path": "fixture/level1/link-to-sibling-directory",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": true,
+    "path": "fixture/level1/link-to-sibling-file",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": true,
+    "path": "fixture/level1/link-to-unexisting-file",
+  },
+]
+`;
+
+exports[`File static readDir() generates asynchronously one File instance per child when path links to a directory 1`] = `
+Array [
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": false,
+    "path": "fixture/level1/link-to-sibling-directory/file2a",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": false,
+    "path": "fixture/level1/link-to-sibling-directory/file2b",
+  },
+  File {
+    "isDirectory": true,
+    "isSymbolicLink": false,
+    "path": "fixture/level1/link-to-sibling-directory/level3",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": true,
+    "path": "fixture/level1/link-to-sibling-directory/link-to-directory",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": true,
+    "path": "fixture/level1/link-to-sibling-directory/link-to-grand-parent-directory",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": true,
+    "path": "fixture/level1/link-to-sibling-directory/link-to-parent-directory",
+  },
+]
 `;
