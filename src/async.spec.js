@@ -1,5 +1,5 @@
 import '@babel/polyfill'; // Required for NodeJS < 10
-import { asyncFlattenMap, asyncMap, promisify, values } from './async';
+import { asyncFilter, asyncFlattenMap, asyncMap, promisify, values } from './async';
 
 const array = ['foo', 'bar', 'baz'];
 
@@ -88,6 +88,38 @@ describe('asyncMap', () => {
             for await (const item of asyncMap(getIterable(), fn)) {
               expect(item).toMatchSnapshot();
             }
+          });
+        });
+      });
+    });
+  });
+});
+
+/** @test {asyncFilter} */
+describe('asyncFilter', () => {
+  it('is a function', () => {
+    expect(asyncFilter).toBeFunction();
+  });
+
+  [
+    ['an array', () => ['foo', 'bar', 'baz']],
+    ['a synchronous iterator', synchronousGenerator],
+    ['an asynchronous iterator', asynchronousGenerator],
+  ].forEach(([whatIterable, getIterable]) => {
+    describe(`when iterable is a ${whatIterable}`, () => {
+      [
+        ['a synchronous function', str => str.startsWith('ba')],
+        ['an asynchronous function', async str => Promise.resolve(str.startsWith('ba'))],
+      ].forEach(([whatFilter, filter]) => {
+        describe(`and filter is ${whatFilter}`, () => {
+          it('returns an asynchronous iterator', () => {
+            const iterator = asyncFilter(getIterable(), filter);
+            expect(iterator.next).toBeFunction();
+            expect(iterator.next()).toBeInstanceOf(Promise);
+          });
+
+          it('yields expected values', async () => {
+            expect(await values(asyncFilter(getIterable(), filter))).toMatchSnapshot();
           });
         });
       });
