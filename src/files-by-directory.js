@@ -14,15 +14,16 @@ import { isUniqueAndNotDescendant } from './path';
  * @async
  * @generator
  * @param {string[]} paths Paths to files or directories.
+ * @param {Object} options Traversing options, see {@link defaults}.
  * @return {AsyncIterator<File[]>} Generates one array of File instances per directory.
  */
-async function* fileObjectsByDirectory(paths) {
+async function* fileObjectsByDirectory(paths, options = {}) {
   const regularFiles = {};
 
   for await (const file of File.fromPaths(paths.filter(isUniqueAndNotDescendant))) {
     if (file.isDirectory) {
-      yield* file.getFilesByDirectory();
-    } else {
+      yield* file.getFilesByDirectory(options);
+    } else if (!options.excludeSymlinks || !file.isSymbolicLink) {
       const parent = dirname(file.path);
       if (!regularFiles[parent]) {
         regularFiles[parent] = [];
@@ -46,8 +47,9 @@ async function* fileObjectsByDirectory(paths) {
  * @async
  * @generator
  * @param {string[]} paths Paths to files or directories.
+ * @param {Object} options Traversing options, see {@link defaults}.
  * @return {AsyncIterator<string[]>} Generates one array of file paths per directory.
  */
-export default async function* filesByDirectory(paths) {
-  yield* asyncMap(fileObjectsByDirectory(paths), files => files.map(file => file.path));
+export default async function* filesByDirectory(paths, options) {
+  yield* asyncMap(fileObjectsByDirectory(paths, options), files => files.map(file => file.path));
 }

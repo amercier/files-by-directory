@@ -21,9 +21,10 @@ export function promisify(fn) {
  *
  * @async
  * @generator
- * @param {Iterable} iterable Synchronous or asynchronous iterable.
- * @param {Function} fn Synchronous or asynchronous function.
- * @returns {Iterator} An asynchronous iterator that yields each value returned from `fn(iterable[i])`.
+ * @param {Iterable<T>} iterable Synchronous or asynchronous iterable.
+ * @param {Function: T => U} fn Synchronous or asynchronous function.
+ * @returns {AsyncIterator<U>} An asynchronous iterator that yields value returned by `fn` applied to
+ * each element of `iterable`.
  */
 export async function* asyncMap(iterable, fn) {
   for await (const value of iterable) {
@@ -32,13 +33,32 @@ export async function* asyncMap(iterable, fn) {
 }
 
 /**
+ * Return an asynchronous generator that yields all elements from a given iterable that pass the
+ * test implemented by the provided function.
+ *
+ * @async
+ * @generator
+ * @param {Iterable<T>} iterable Synchronous or asynchronous iterable.
+ * @param {Function: T => boolean} filter Synchronous or asynchronous function.
+ * @returns {AsyncIterator<T>} An asynchronous iterator that yields values from `iterable` where
+ * `filter` return a truthy value.
+ */
+export async function* asyncFilter(iterable, filter) {
+  for await (const value of iterable) {
+    if (await filter(value)) {
+      yield value;
+    }
+  }
+}
+
+/**
  * Apply a given generator to each element of a given iterable, and re-yield every yielded values.
  *
  * @async
  * @generator
- * @param {Iterable} iterable Synchronous or asynchronous iterable.
- * @param {Function} generator Synchronous or asynchronous generator function.
- * @returns {Promise} An asynchronous iterator that re-yields each value yielded by `generator(iterable[i])`.
+ * @param {Iterable<T>} iterable Synchronous or asynchronous iterable.
+ * @param {Function: T => Iterable<U>} generator Synchronous or asynchronous generator function.
+ * @returns {AsyncIterator<U>} An asynchronous iterator that re-yields each value yielded by `generator(iterable[i])`.
  */
 export async function* asyncFlattenMap(iterable, generator) {
   for await (const value of iterable) {
@@ -49,8 +69,8 @@ export async function* asyncFlattenMap(iterable, generator) {
 /**
  * Get all values from an iterable.
  *
- * @param {Iterable} iterable Synchronous or asynchronous iterable.
- * @returns {Promise} A Promise resolving to an array containing all yielded values.
+ * @param {Iterable<T>} iterable Synchronous or asynchronous iterable.
+ * @returns {Promise<T[]>} A Promise resolving to an array containing all yielded values.
  */
 export async function values(iterable) {
   const array = [];

@@ -1,5 +1,47 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`asyncFilter when iterable is a a synchronous iterator and filter is a synchronous function yields expected values 1`] = `
+Array [
+  "bar",
+  "baz",
+]
+`;
+
+exports[`asyncFilter when iterable is a a synchronous iterator and filter is an asynchronous function yields expected values 1`] = `
+Array [
+  "bar",
+  "baz",
+]
+`;
+
+exports[`asyncFilter when iterable is a an array and filter is a synchronous function yields expected values 1`] = `
+Array [
+  "bar",
+  "baz",
+]
+`;
+
+exports[`asyncFilter when iterable is a an array and filter is an asynchronous function yields expected values 1`] = `
+Array [
+  "bar",
+  "baz",
+]
+`;
+
+exports[`asyncFilter when iterable is a an asynchronous iterator and filter is a synchronous function yields expected values 1`] = `
+Array [
+  "bar",
+  "baz",
+]
+`;
+
+exports[`asyncFilter when iterable is a an asynchronous iterator and filter is an asynchronous function yields expected values 1`] = `
+Array [
+  "bar",
+  "baz",
+]
+`;
+
 exports[`asyncFlattenMap when iterable is a a synchronous iterator and fn is a synchronous generator yields expected values asynchronously 1`] = `"foo1"`;
 
 exports[`asyncFlattenMap when iterable is a a synchronous iterator and fn is a synchronous generator yields expected values asynchronously 2`] = `"foo2"`;

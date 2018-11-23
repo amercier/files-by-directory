@@ -13,14 +13,14 @@ import {
   unexistingFile,
 } from '../fixture';
 
-const file1aArgs = [file1a, false];
-const level1Args = [level1, true];
-const level2Args = [level2, true];
-const level3Args = [level3, true];
-const linkToSiblingDirectoryArgs = [linkToSiblingDirectory, false];
-const linkToSiblingFileArgs = [linkToSiblingFile, false];
-const linkToUnexistingFileArgs = [linkToUnexistingFile, false];
-const unexistingFileArgs = [unexistingFile, false];
+const file1aArgs = [file1a, false, false];
+const level1Args = [level1, true, false];
+const level2Args = [level2, true, false];
+const level3Args = [level3, true, false];
+const linkToSiblingDirectoryArgs = [linkToSiblingDirectory, false, true];
+const linkToSiblingFileArgs = [linkToSiblingFile, false, true];
+const linkToUnexistingFileArgs = [linkToUnexistingFile, false, true];
+const unexistingFileArgs = [unexistingFile, false, false];
 
 describe('File', () => {
   describe('constructor()', () => {
@@ -109,7 +109,7 @@ describe('File', () => {
       expect(await values(new File(...level1Args).getFilesByDirectory())).toMatchSnapshot();
     });
 
-    it('generates asynchronously one array containing the file when file is an unexisting file', async () => {
+    it('generates asynchronously one array containing the file when file is an non-existing file', async () => {
       expect(await values(new File(...unexistingFileArgs).getFilesByDirectory())).toMatchSnapshot();
     });
 
@@ -133,17 +133,18 @@ describe('File', () => {
   });
 
   describe('static fromDirent()', () => {
-    const argsToDirent = ([path, isDirectory]) => ({
+    const argsToDirent = ([path, isDirectory, isSymbolicLink]) => ({
       name: basename(path),
       isDirectory: () => isDirectory,
+      isSymbolicLink: () => isSymbolicLink,
     });
     const file1aDirent = argsToDirent(file1aArgs);
     const level2Dirent = argsToDirent(level2Args);
     const level3Dirent = argsToDirent(level3Args);
+    const unexistingFileDirent = argsToDirent(unexistingFileArgs);
     const linkToSiblingDirectoryDirent = argsToDirent(linkToSiblingDirectoryArgs);
     const linkToSiblingFileDirent = argsToDirent(linkToSiblingFileArgs);
     const linkToUnexistingFileDirent = argsToDirent(linkToUnexistingFileArgs);
-    const unexistingFileDirent = argsToDirent(unexistingFileArgs);
 
     it('creates instances of File', () => {
       expect(File.fromDirent(level1, file1aDirent)).toBeInstanceOf(File);
@@ -153,28 +154,46 @@ describe('File', () => {
       expect(File.fromDirent(level1, file1aDirent).path).toBe(file1a);
       expect(File.fromDirent(level1, level2Dirent).path).toBe(level2);
       expect(File.fromDirent(level2, level3Dirent).path).toBe(level3);
+      expect(File.fromDirent(level1, unexistingFileDirent).path).toBe(unexistingFile);
+      expect(File.fromDirent(level1, linkToSiblingFileDirent).path).toBe(linkToSiblingFile);
       expect(File.fromDirent(level1, linkToSiblingDirectoryDirent).path).toBe(
         linkToSiblingDirectory,
       );
-      expect(File.fromDirent(level1, linkToSiblingFileDirent).path).toBe(linkToSiblingFile);
       expect(File.fromDirent(level1, linkToUnexistingFileDirent).path).toBe(linkToUnexistingFile);
-      expect(File.fromDirent(level1, unexistingFileDirent).path).toBe(unexistingFile);
     });
 
     it('it uses given dirent to determine isDirectory', () => {
       expect(File.fromDirent(level1, file1aDirent).isDirectory).toBe(file1aArgs[1]);
       expect(File.fromDirent(level1, level2Dirent).isDirectory).toBe(level2Args[1]);
       expect(File.fromDirent(level2, level3Dirent).isDirectory).toBe(level3Args[1]);
-      expect(File.fromDirent(level1, linkToSiblingDirectoryDirent).isDirectory).toBe(
-        linkToSiblingDirectoryArgs[1],
+      expect(File.fromDirent(level1, linkToUnexistingFileDirent).isDirectory).toBe(
+        linkToUnexistingFileArgs[1],
       );
       expect(File.fromDirent(level1, linkToSiblingFileDirent).isDirectory).toBe(
         linkToSiblingFileArgs[1],
       );
-      expect(File.fromDirent(level1, linkToUnexistingFileDirent).isDirectory).toBe(
-        linkToUnexistingFileArgs[1],
+      expect(File.fromDirent(level1, linkToSiblingDirectoryDirent).isDirectory).toBe(
+        linkToSiblingDirectoryArgs[1],
       );
       expect(File.fromDirent(level1, unexistingFileDirent).isDirectory).toBe(unexistingFileArgs[1]);
+    });
+
+    it('it uses given dirent to determine isSymbolicLink', () => {
+      expect(File.fromDirent(level1, file1aDirent).isSymbolicLink).toBe(file1aArgs[2]);
+      expect(File.fromDirent(level1, level2Dirent).isSymbolicLink).toBe(level2Args[2]);
+      expect(File.fromDirent(level2, level3Dirent).isSymbolicLink).toBe(level3Args[2]);
+      expect(File.fromDirent(level1, unexistingFileDirent).isSymbolicLink).toBe(
+        unexistingFileArgs[2],
+      );
+      expect(File.fromDirent(level1, linkToSiblingFileDirent).isSymbolicLink).toBe(
+        linkToSiblingFileArgs[2],
+      );
+      expect(File.fromDirent(level1, linkToSiblingDirectoryDirent).isSymbolicLink).toBe(
+        linkToSiblingDirectoryArgs[2],
+      );
+      expect(File.fromDirent(level1, linkToUnexistingFileDirent).isSymbolicLink).toBe(
+        linkToUnexistingFileArgs[2],
+      );
     });
   });
 
@@ -193,21 +212,21 @@ describe('File', () => {
       expect(await File.fromPath(file1a)).toMatchSnapshot();
     });
 
-    it('rejects when file is an unexisting file', async () => {
+    it('rejects when file is an non-existing file', async () => {
       await expect(File.fromPath(unexistingFile)).toReject();
     });
 
-    it('resolves with and instance of File when symlink links to an existing directory', async () => {
-      await expect(File.fromPath(linkToSiblingDirectory)).toResolve();
-      expect(await File.fromPath(linkToSiblingDirectory)).toMatchSnapshot();
-    });
-
-    it('resolves with and instance of File when symlink links to an existing file', async () => {
+    it('resolves with and instance of File when symlink links to a file', async () => {
       await expect(File.fromPath(linkToSiblingFile)).toResolve();
       expect(await File.fromPath(linkToSiblingFile)).toMatchSnapshot();
     });
 
-    it('resolves with and instance of File when symlink links to unexisting file', async () => {
+    it('resolves with and instance of File when symlink links to a directory', async () => {
+      await expect(File.fromPath(linkToSiblingDirectory)).toResolve();
+      expect(await File.fromPath(linkToSiblingDirectory)).toMatchSnapshot();
+    });
+
+    it('resolves with and instance of File when symlink links to non-existing file', async () => {
       await expect(File.fromPath(linkToUnexistingFile)).toResolve();
       expect(await File.fromPath(linkToUnexistingFile)).toMatchSnapshot();
     });
@@ -226,9 +245,37 @@ describe('File', () => {
       }
     });
 
-    it('generates a rejected Promise when an unexisting file is given', async () => {
+    it('generates a rejected Promise when an non-existing file is given', async () => {
       const iterator = File.fromPaths([unexistingFile]);
       await expect(iterator.next()).toReject();
+    });
+  });
+
+  describe('static readDir()', () => {
+    it('generates a rejected Promise when path is a file', async () => {
+      await expect(values(File.readDir(file1a))).toReject();
+    });
+
+    it('generates asynchronously one File instance per child when path is a directory', async () => {
+      expect(await values(File.readDir(level3))).toMatchSnapshot();
+      expect(await values(File.readDir(level2))).toMatchSnapshot();
+      expect(await values(File.readDir(level1))).toMatchSnapshot();
+    });
+
+    it('generates a rejected Promise when path is a non-existing file', async () => {
+      await expect(values(File.readDir(unexistingFile))).toReject();
+    });
+
+    it('generates a rejected Promise when path links to a file', async () => {
+      await expect(values(File.readDir(linkToSiblingFile))).toReject();
+    });
+
+    it('generates asynchronously one File instance per child when path links to a directory', async () => {
+      expect(await values(File.readDir(linkToSiblingDirectory))).toMatchSnapshot();
+    });
+
+    it('generates a rejected Promise when path links to a non-existing file', async () => {
+      await expect(values(File.readDir(linkToUnexistingFile))).toReject();
     });
   });
 });
