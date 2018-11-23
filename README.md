@@ -24,7 +24,7 @@ npm install --save files-by-directory
 
 ## API
 
-### `filesByDirectory(paths: string[]): AsyncIterator<string[]>`
+### `filesByDirectory(paths: string[], options = {}): AsyncIterator<string[]>`
 
 Scan directories recursively, and generate 1 array per directory, containing the file paths.
 
@@ -76,6 +76,35 @@ for await (const files of filesByDirectory(['level1'])) {
 
 - If a path is encountered twice, it is only generated once.
 - Symbolic links are treated as regular files, even though they link to directories.
+
+#### `options.excludeSymlinks` (default: `false`)
+
+When set to `true`, excludes symbolic links from results:
+
+```bash
+# Directory structure:
+level1
+├── level2a
+│   ├── file2a
+│   └── file2b
+├── level2b -> level2a
+├── file1a
+└── file1b -> file1a
+```
+
+```js
+for await (const files of filesByDirectory(['level1']/*, { excludeSymlinks: false }*/} )) {
+  console.log(files);
+}
+// [ 'level1/level2b', 'level1/file1a', 'level1/file1b' ]
+// [ 'level2a/file2a', 'level2a/file2b' ]
+
+for await (const files of filesByDirectory(['level1'], { excludeSymlinks: true })) {
+  console.log(files);
+}
+// [ 'level1/file1a', 'level1/file1b' ]
+// [ 'level2a/file2a', 'level2a/file2b' ]
+```
 
 ## Asynchronous iteration
 
