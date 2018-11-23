@@ -1,12 +1,12 @@
 import '@babel/polyfill'; // Required for NodeJS < 10
 import { lStat, isDir, readDir } from './fs';
 import {
-  existingFile,
-  existingDirectory,
+  file1a,
+  level2,
+  linkToSiblingDirectory,
+  linkToSiblingFile,
+  linkToUnexistingFile,
   unexistingFile,
-  symlinkToExistingFile,
-  symlinkToExistingDirectory,
-  symlinkToUnexistingFile,
 } from '../fixture';
 
 /** @test {lStat} */
@@ -16,26 +16,26 @@ describe('lStat', () => {
   });
 
   it('returns a Promise', () => {
-    expect(lStat(existingFile)).toBeInstanceOf(Promise);
+    expect(lStat(file1a)).toBeInstanceOf(Promise);
   });
 
   it('resolves when file exists', async () => {
-    await expect(lStat(existingFile)).toResolve();
+    await expect(lStat(file1a)).toResolve();
   });
 
   it('resolves to the correct stat when file exists', async () => {
-    const stat = await lStat(existingFile);
+    const stat = await lStat(file1a);
     expect(stat.isFile()).toBe(true);
     expect(stat.isDirectory()).toBe(false);
     expect(stat.isSymbolicLink()).toBe(false);
   });
 
   it('resolves when directory exists', async () => {
-    await expect(lStat(existingDirectory)).toResolve();
+    await expect(lStat(level2)).toResolve();
   });
 
   it('resolves to the correct stat when directory exists', async () => {
-    const stat = await lStat(existingDirectory);
+    const stat = await lStat(level2);
     expect(stat.isFile()).toBe(false);
     expect(stat.isDirectory()).toBe(true);
     expect(stat.isSymbolicLink()).toBe(false);
@@ -46,33 +46,33 @@ describe('lStat', () => {
   });
 
   it('resolves when symlink links to an existing file', async () => {
-    await expect(lStat(symlinkToExistingFile)).toResolve();
+    await expect(lStat(linkToSiblingFile)).toResolve();
   });
 
   it('resolves to the correct stat when symlink links to an existing file', async () => {
-    const stat = await lStat(symlinkToExistingFile);
+    const stat = await lStat(linkToSiblingFile);
     expect(stat.isFile()).toBe(false);
     expect(stat.isDirectory()).toBe(false);
     expect(stat.isSymbolicLink()).toBe(true);
   });
 
   it('resolves when symlink links to an existing directory', async () => {
-    await expect(lStat(symlinkToExistingDirectory)).toResolve();
+    await expect(lStat(linkToSiblingDirectory)).toResolve();
   });
 
   it('resolves to the correct stat when symlink links to an existing directory', async () => {
-    const stat = await lStat(symlinkToExistingDirectory);
+    const stat = await lStat(linkToSiblingDirectory);
     expect(stat.isFile()).toBe(false);
     expect(stat.isDirectory()).toBe(false);
     expect(stat.isSymbolicLink()).toBe(true);
   });
 
   it('resolves when symlink links to unexisting file', async () => {
-    await expect(lStat(symlinkToUnexistingFile)).toResolve();
+    await expect(lStat(linkToUnexistingFile)).toResolve();
   });
 
   it('resolves to the correct stat symlink links to unexisting file', async () => {
-    const stat = await lStat(symlinkToUnexistingFile);
+    const stat = await lStat(linkToUnexistingFile);
     expect(stat.isFile()).toBe(false);
     expect(stat.isDirectory()).toBe(false);
     expect(stat.isSymbolicLink()).toBe(true);
@@ -90,15 +90,15 @@ describe('isDir', () => {
   });
 
   it('returns a Promise', () => {
-    expect(isDir(existingFile)).toBeInstanceOf(Promise);
+    expect(isDir(file1a)).toBeInstanceOf(Promise);
   });
 
   it('resolves to false when file exists', async () => {
-    expect(await isDir(existingFile)).toBe(false);
+    expect(await isDir(file1a)).toBe(false);
   });
 
   it('resolves to true when directory exists', async () => {
-    expect(await isDir(existingDirectory)).toBe(true);
+    expect(await isDir(level2)).toBe(true);
   });
 
   it('rejects when file does not exist', async () => {
@@ -106,15 +106,15 @@ describe('isDir', () => {
   });
 
   it('resolves to false when symlink links to an existing file', async () => {
-    expect(await isDir(symlinkToExistingFile)).toBe(false);
+    expect(await isDir(linkToSiblingFile)).toBe(false);
   });
 
   it('resolves to false when symlink links to an existing directory', async () => {
-    expect(await isDir(symlinkToExistingDirectory)).toBe(false);
+    expect(await isDir(linkToSiblingDirectory)).toBe(false);
   });
 
   it('resolves to false when symlink links to unexisting file', async () => {
-    expect(await isDir(symlinkToUnexistingFile)).toBe(false);
+    expect(await isDir(linkToUnexistingFile)).toBe(false);
   });
 });
 
@@ -134,15 +134,15 @@ describe('readDir', () => {
   });
 
   it('returns a Promise', () => {
-    expect(isDir(existingDirectory)).toBeInstanceOf(Promise);
+    expect(isDir(level2)).toBeInstanceOf(Promise);
   });
 
   it('rejects when file is a regular file', async () => {
-    await expect(readDir(existingFile)).toReject();
+    await expect(readDir(file1a)).toReject();
   });
 
   it('resolves to the list of files when directory exists', async () => {
-    expect(await readDir(existingDirectory)).toEqual(expectedFiles);
+    expect(await readDir(level2)).toEqual(expectedFiles);
   });
 
   it('rejects when file does not exist', async () => {
@@ -150,14 +150,14 @@ describe('readDir', () => {
   });
 
   it('rejects when symlink links to a regular file', async () => {
-    await expect(readDir(symlinkToExistingFile)).toReject();
+    await expect(readDir(linkToSiblingFile)).toReject();
   });
 
   it('resolves to the list of files when symlink links to an existing directory', async () => {
-    expect(await readDir(symlinkToExistingDirectory)).toEqual(expectedFiles);
+    expect(await readDir(linkToSiblingDirectory)).toEqual(expectedFiles);
   });
 
   it('rejects when symlink links to unexisting file', async () => {
-    await expect(readDir(symlinkToUnexistingFile)).toReject();
+    await expect(readDir(linkToUnexistingFile)).toReject();
   });
 });

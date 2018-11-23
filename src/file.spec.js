@@ -2,13 +2,13 @@ import '@babel/polyfill'; // Required for NodeJS < 10
 import { values } from './async';
 import File from './file';
 import {
-  existingFile,
-  existingDirectory,
+  file1a,
+  level2,
+  level3,
+  linkToSiblingDirectory,
+  linkToSiblingFile,
+  linkToUnexistingFile,
   unexistingFile,
-  symlinkToExistingFile,
-  symlinkToExistingDirectory,
-  symlinkToUnexistingFile,
-  directoryWithoutSubdirectories,
 } from '../fixture';
 
 describe('File', () => {
@@ -27,26 +27,26 @@ describe('File', () => {
 
   describe('getChildren()', () => {
     it('returns an iterator', () => {
-      const iterator = new File(existingFile, false).getChildren();
+      const iterator = new File(file1a, false).getChildren();
       expect(iterator.next).toBeFunction();
     });
 
     it('generates a rejected Promise whenever isDirectory is false', async () => {
-      await expect(new File(existingFile, false).getChildren().next()).toReject();
-      await expect(new File(existingDirectory, false).getChildren().next()).toReject();
+      await expect(new File(file1a, false).getChildren().next()).toReject();
+      await expect(new File(level2, false).getChildren().next()).toReject();
       await expect(new File(unexistingFile, false).getChildren().next()).toReject();
-      await expect(new File(symlinkToExistingFile, false).getChildren().next()).toReject();
-      await expect(new File(symlinkToExistingDirectory, false).getChildren().next()).toReject();
-      await expect(new File(symlinkToUnexistingFile, false).getChildren().next()).toReject();
+      await expect(new File(linkToSiblingFile, false).getChildren().next()).toReject();
+      await expect(new File(linkToSiblingDirectory, false).getChildren().next()).toReject();
+      await expect(new File(linkToUnexistingFile, false).getChildren().next()).toReject();
     });
 
     describe('when isDirectory is true', () => {
       it('generates children asynchronously when file is a directory', async () => {
-        expect(await values(new File(existingDirectory, true).getChildren())).toMatchSnapshot();
+        expect(await values(new File(level2, true).getChildren())).toMatchSnapshot();
       });
 
       it('generates a rejected Promise when file is a file', async () => {
-        await expect(new File(existingFile, true).getChildren().next()).toReject();
+        await expect(new File(file1a, true).getChildren().next()).toReject();
       });
 
       it('generates a rejected Promise when file is an unexisting file', async () => {
@@ -55,49 +55,49 @@ describe('File', () => {
 
       it('generates children asynchronously when symlink links to an existing directory', async () => {
         expect(
-          await values(new File(symlinkToExistingDirectory, true).getChildren()),
+          await values(new File(linkToSiblingDirectory, true).getChildren()),
         ).toMatchSnapshot();
       });
 
       it('generates a rejected Promise when symlink links to an existing file', async () => {
-        await expect(new File(symlinkToExistingFile, true).getChildren().next()).toReject();
+        await expect(new File(linkToSiblingFile, true).getChildren().next()).toReject();
       });
 
       it('generates a rejected Promise when symlink links to unexisting file', async () => {
-        await expect(new File(symlinkToUnexistingFile, true).getChildren().next()).toReject();
+        await expect(new File(linkToUnexistingFile, true).getChildren().next()).toReject();
       });
     });
   });
 
   describe('getFilesByDirectory()', () => {
     it('returns an iterator', () => {
-      const iterator = new File(existingFile, false).getFilesByDirectory();
+      const iterator = new File(file1a, false).getFilesByDirectory();
       expect(iterator.next).toBeFunction();
     });
 
     it('generates asynchronously an array containing the file when path is a file', async () => {
-      const directory = new File(existingFile, false);
+      const directory = new File(file1a, false);
       for await (const files of directory.getFilesByDirectory()) {
         expect(files).toMatchSnapshot();
       }
     });
 
     it('generates asynchronously an array of files when given path is a directory containing only files', async () => {
-      const directory = new File(directoryWithoutSubdirectories, true);
+      const directory = new File(level3, true);
       for await (const files of directory.getFilesByDirectory()) {
         expect(files).toMatchSnapshot();
       }
     });
 
     it('generates one array be directory when given path is a directory containing sub-directories', async () => {
-      const directory = new File(existingDirectory, true);
+      const directory = new File(level2, true);
       for await (const files of directory.getFilesByDirectory()) {
         expect(files).toMatchSnapshot();
       }
     });
 
     it('generates a rejected Promise when file is a file', async () => {
-      await expect(new File(existingFile, true).getFilesByDirectory().next()).toReject();
+      await expect(new File(file1a, true).getFilesByDirectory().next()).toReject();
     });
 
     it('generates a rejected Promise when file is an unexisting file', async () => {
@@ -105,11 +105,11 @@ describe('File', () => {
     });
 
     it('generates a rejected Promise when symlink links to an existing file', async () => {
-      await expect(new File(symlinkToExistingFile, true).getFilesByDirectory().next()).toReject();
+      await expect(new File(linkToSiblingFile, true).getFilesByDirectory().next()).toReject();
     });
 
     it('generates a rejected Promise when symlink links to unexisting file', async () => {
-      await expect(new File(symlinkToUnexistingFile, true).getFilesByDirectory().next()).toReject();
+      await expect(new File(linkToUnexistingFile, true).getFilesByDirectory().next()).toReject();
     });
   });
 
@@ -134,17 +134,17 @@ describe('File', () => {
 
   describe('static fromPath()', () => {
     it('returns a Promise', () => {
-      expect(File.fromPath(existingFile)).toBeInstanceOf(Promise);
+      expect(File.fromPath(file1a)).toBeInstanceOf(Promise);
     });
 
     it('resolves with an instance of File when file is a directory', async () => {
-      await expect(File.fromPath(existingDirectory)).toResolve();
-      expect(await File.fromPath(existingDirectory)).toMatchSnapshot();
+      await expect(File.fromPath(level2)).toResolve();
+      expect(await File.fromPath(level2)).toMatchSnapshot();
     });
 
     it('resolves with an instance of File when file is a file', async () => {
-      await expect(File.fromPath(existingFile)).toResolve();
-      expect(await File.fromPath(existingFile)).toMatchSnapshot();
+      await expect(File.fromPath(file1a)).toResolve();
+      expect(await File.fromPath(file1a)).toMatchSnapshot();
     });
 
     it('rejects when file is an unexisting file', async () => {
@@ -152,29 +152,29 @@ describe('File', () => {
     });
 
     it('resolves with and instance of File when symlink links to an existing directory', async () => {
-      await expect(File.fromPath(symlinkToExistingDirectory)).toResolve();
-      expect(await File.fromPath(symlinkToExistingDirectory)).toMatchSnapshot();
+      await expect(File.fromPath(linkToSiblingDirectory)).toResolve();
+      expect(await File.fromPath(linkToSiblingDirectory)).toMatchSnapshot();
     });
 
     it('resolves with and instance of File when symlink links to an existing file', async () => {
-      await expect(File.fromPath(symlinkToExistingFile)).toResolve();
-      expect(await File.fromPath(symlinkToExistingFile)).toMatchSnapshot();
+      await expect(File.fromPath(linkToSiblingFile)).toResolve();
+      expect(await File.fromPath(linkToSiblingFile)).toMatchSnapshot();
     });
 
     it('resolves with and instance of File when symlink links to unexisting file', async () => {
-      await expect(File.fromPath(symlinkToUnexistingFile)).toResolve();
-      expect(await File.fromPath(symlinkToUnexistingFile)).toMatchSnapshot();
+      await expect(File.fromPath(linkToUnexistingFile)).toResolve();
+      expect(await File.fromPath(linkToUnexistingFile)).toMatchSnapshot();
     });
   });
 
   describe('static fromPaths()', () => {
     it('generates instances of File asynchronously', async () => {
       for await (const file of File.fromPaths([
-        existingFile,
-        existingDirectory,
-        symlinkToExistingFile,
-        symlinkToExistingDirectory,
-        symlinkToUnexistingFile,
+        file1a,
+        level2,
+        linkToSiblingFile,
+        linkToSiblingDirectory,
+        linkToUnexistingFile,
       ])) {
         expect(file).toMatchSnapshot();
       }
