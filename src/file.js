@@ -1,7 +1,8 @@
 import regeneratorRuntime from 'regenerator-runtime';
 import { join } from 'path';
-import { asyncMap } from './async';
+import { asyncFilter, asyncMap } from './async';
 import { lStat, readDir } from './fs';
+import defaults from './options';
 
 /**
  * File
@@ -33,14 +34,16 @@ export default class File {
    *
    * @async
    * @generator
-   * @yields {Promise<File>} Generates one instance of File per child.
+   * @param {Object} options Traversing options, see {@link defaults}.
+   * @returns {AsynchronousGenerator<File>} Generates one instance of File per child.
    */
-  async *getChildren() {
+  async *getChildren({ excludeSymlinks = defaults.excludeSymlinks } = {}) {
     if (!this.isDirectory) {
       throw new Error(`File is not a directory: ${this}`);
     }
 
-    yield* this.constructor.readDir(this.path);
+    const children = this.constructor.readDir(this.path);
+    yield* excludeSymlinks ? asyncFilter(children, child => !child.isSymbolicLink) : children;
   }
 
   /**
@@ -48,14 +51,15 @@ export default class File {
    *
    * @async
    * @generator
-   * @yields {Promise<File[]>} Generates one array of File instances per directory.
+   * @param {Object} options Traversing options, see {@link defaults}.
+   * @returns {AsynchronousGenerator<File[]>} Generates one array of File instances per directory.
    */
-  async *getFilesByDirectory() {
+  async *getFilesByDirectory(options = {}) {
     if (this.isDirectory) {
       const files = [];
-      for await (const child of this.getChildren()) {
+      for await (const child of this.getChildren(options)) {
         if (child.isDirectory) {
-          yield* child.getFilesByDirectory();
+          yield* child.getFilesByDirectory(options);
         } else {
           files.push(child);
         }
