@@ -13,14 +13,14 @@ import {
   unexistingFile,
 } from '../fixture';
 
-const file1aArgs = [file1a, false];
-const level1Args = [level1, true];
-const level2Args = [level2, true];
-const level3Args = [level3, true];
-const linkToSiblingDirectoryArgs = [linkToSiblingDirectory, false];
-const linkToSiblingFileArgs = [linkToSiblingFile, false];
-const linkToUnexistingFileArgs = [linkToUnexistingFile, false];
-const unexistingFileArgs = [unexistingFile, false];
+const file1aArgs = [file1a, false, false];
+const level1Args = [level1, true, false];
+const level2Args = [level2, true, false];
+const level3Args = [level3, true, false];
+const linkToSiblingDirectoryArgs = [linkToSiblingDirectory, false, true];
+const linkToSiblingFileArgs = [linkToSiblingFile, false, true];
+const linkToUnexistingFileArgs = [linkToUnexistingFile, false, true];
+const unexistingFileArgs = [unexistingFile, false, false];
 
 describe('File', () => {
   describe('constructor()', () => {
@@ -133,9 +133,10 @@ describe('File', () => {
   });
 
   describe('static fromDirent()', () => {
-    const argsToDirent = ([path, isDirectory]) => ({
+    const argsToDirent = ([path, isDirectory, isSymbolicLink]) => ({
       name: basename(path),
       isDirectory: () => isDirectory,
+      isSymbolicLink: () => isSymbolicLink,
     });
     const file1aDirent = argsToDirent(file1aArgs);
     const level2Dirent = argsToDirent(level2Args);
@@ -175,6 +176,24 @@ describe('File', () => {
         linkToUnexistingFileArgs[1],
       );
       expect(File.fromDirent(level1, unexistingFileDirent).isDirectory).toBe(unexistingFileArgs[1]);
+    });
+
+    it('it uses given dirent to determine isSymbolicLink', () => {
+      expect(File.fromDirent(level1, file1aDirent).isSymbolicLink).toBe(file1aArgs[2]);
+      expect(File.fromDirent(level1, level2Dirent).isSymbolicLink).toBe(level2Args[2]);
+      expect(File.fromDirent(level2, level3Dirent).isSymbolicLink).toBe(level3Args[2]);
+      expect(File.fromDirent(level1, linkToSiblingDirectoryDirent).isSymbolicLink).toBe(
+        linkToSiblingDirectoryArgs[2],
+      );
+      expect(File.fromDirent(level1, linkToSiblingFileDirent).isSymbolicLink).toBe(
+        linkToSiblingFileArgs[2],
+      );
+      expect(File.fromDirent(level1, linkToUnexistingFileDirent).isSymbolicLink).toBe(
+        linkToUnexistingFileArgs[2],
+      );
+      expect(File.fromDirent(level1, unexistingFileDirent).isSymbolicLink).toBe(
+        unexistingFileArgs[2],
+      );
     });
   });
 

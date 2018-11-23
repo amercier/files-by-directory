@@ -1,7 +1,7 @@
 import regeneratorRuntime from 'regenerator-runtime';
 import { join } from 'path';
 import { asyncMap } from './async';
-import { isDir, readDir } from './fs';
+import { lStat, readDir } from './fs';
 
 /**
  * File
@@ -13,10 +13,12 @@ export default class File {
    * @param {string} path Path to a file, directory, or symlink
    * @param {boolean} isDirectory Whether the file is a directory or not. Symbolic links to
    * directories are not considered directories.
+   * @param {boolean} isSymbolicLink Whether the file is a symbolic link.
    */
-  constructor(path, isDirectory) {
+  constructor(path, isDirectory, isSymbolicLink) {
     this.path = path;
     this.isDirectory = isDirectory;
+    this.isSymbolicLink = isSymbolicLink;
   }
 
   /**
@@ -80,7 +82,7 @@ export default class File {
    */
   static fromDirent(directory, dirent) {
     const path = join(directory, dirent.name);
-    return new File(path, dirent.isDirectory());
+    return new File(path, dirent.isDirectory(), dirent.isSymbolicLink());
   }
 
   /**
@@ -91,7 +93,8 @@ export default class File {
    * @returns {Promise<File>} An instance of File representing the file.
    */
   static async fromPath(path) {
-    return new File(path, await isDir(path));
+    const stats = await lStat(path);
+    return new File(path, stats.isDirectory(), stats.isSymbolicLink());
   }
 
   /**
