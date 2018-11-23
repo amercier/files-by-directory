@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+(nothing)
+
+## [v0.2.0] - 2018-11-23
+
 ### Added
 
 - `excludeSymlinks` option - [#7]
@@ -45,5 +49,6 @@ All notable changes to this project will be documented in this file. The format 
 [#7]: https://github.com/amercier/files-by-directory/pull/7
 [v0.1.0]: https://github.com/amercier/files-by-directory/compare/v0.0.0...v0.1.0
 [v0.1.1]: https://github.com/amercier/files-by-directory/compare/v0.1.0...v0.1.1
-[v0.1.1]: https://github.com/amercier/files-by-directory/compare/v0.1.1...v0.1.2
-[unreleased]: https://github.com/amercier/files-by-directory/compare/v0.1.2...HEAD
+[v0.1.2]: https://github.com/amercier/files-by-directory/compare/v0.1.1...v0.1.2
+[v0.2.0]: https://github.com/amercier/files-by-directory/compare/v0.1.2...v0.2.0
+[unreleased]: https://github.com/amercier/files-by-directory/compare/v0.2.0...HEAD
