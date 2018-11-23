@@ -1,34 +1,26 @@
 import '@babel/polyfill'; // Required for NodeJS < 10
 import { values } from './async';
 import getFilesByDirectory from './files-by-directory';
-import {
-  existingFile,
-  existingDirectory,
-  directoryWithoutSubdirectories,
-  level2,
-  level2Files,
-  level3,
-  level3Files,
-} from '../fixture';
+import { file1a, level2, level2Files, level3, level3Files } from '../fixture';
 
 /** @test {filesByDirectory} */
 describe('filesByDirectory', () => {
   it('returns an asynchronousiterator', () => {
-    const iterator = getFilesByDirectory([existingFile]);
+    const iterator = getFilesByDirectory([file1a]);
     expect(iterator.next).toBeFunction();
     expect(iterator.next()).toBeInstanceOf(Promise);
   });
 
   it('generates asynchronously an array containing the file when path is a file', async () => {
-    expect(await values(getFilesByDirectory([existingFile]))).toMatchSnapshot();
+    expect(await values(getFilesByDirectory([file1a]))).toMatchSnapshot();
   });
 
   it('generates asynchronously an array of files when given path is a directory containing only files', async () => {
-    expect(await values(getFilesByDirectory([directoryWithoutSubdirectories]))).toMatchSnapshot();
+    expect(await values(getFilesByDirectory([level3]))).toMatchSnapshot();
   });
 
   it('generates one array per directory when given path is a directory containing sub-directories', async () => {
-    expect(await values(getFilesByDirectory([existingDirectory]))).toMatchSnapshot();
+    expect(await values(getFilesByDirectory([level2]))).toMatchSnapshot();
   });
 
   it('omits double directory paths', async () => {
@@ -36,7 +28,7 @@ describe('filesByDirectory', () => {
   });
 
   it('omits double file paths', async () => {
-    expect(await values(getFilesByDirectory([existingFile, existingFile]))).toMatchSnapshot();
+    expect(await values(getFilesByDirectory([file1a, file1a]))).toMatchSnapshot();
   });
 
   it('omits descendant directory paths', async () => {
