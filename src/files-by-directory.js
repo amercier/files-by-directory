@@ -19,10 +19,15 @@ import { isUniqueAndNotDescendant } from './path';
  */
 async function* fileObjectsByDirectory(paths, options = {}) {
   const regularFiles = {};
+  const directories = [];
 
   for await (const file of File.fromPaths(paths.filter(isUniqueAndNotDescendant))) {
     if (file.isDirectory) {
-      yield* file.getFilesByDirectory(options);
+      if (options.directoriesFirst) {
+        yield* file.getFilesByDirectory(options);
+      } else {
+        directories.push(file);
+      }
     } else if (!options.excludeSymlinks || !file.isSymbolicLink) {
       const parent = dirname(file.path);
       if (!regularFiles[parent]) {
@@ -34,6 +39,10 @@ async function* fileObjectsByDirectory(paths, options = {}) {
 
   for (const files of Object.values(regularFiles)) {
     yield files;
+  }
+
+  for (const directory of directories) {
+    yield* directory.getFilesByDirectory(options);
   }
 }
 

@@ -57,15 +57,23 @@ export default class File {
   async *getFilesByDirectory(options = {}) {
     if (this.isDirectory) {
       const files = [];
+      const directories = [];
       for await (const child of this.getChildren(options)) {
         if (child.isDirectory) {
-          yield* child.getFilesByDirectory(options);
+          if (options.directoriesFirst) {
+            yield* child.getFilesByDirectory(options);
+          } else {
+            directories.push(child);
+          }
         } else {
           files.push(child);
         }
       }
       if (files.length > 0) {
         yield files;
+      }
+      for (const directory of directories) {
+        yield* directory.getFilesByDirectory(options);
       }
     } else {
       yield [this];
