@@ -113,11 +113,12 @@ When set to `true`, proceed directories (recursively) before files.
 ```bash
 # Directory structure:
 level1
-├── level2
+├── level2a
 │   ├── level3
 │   │   ├── file3a
 │   │   └── file3b
-│   ├── file2a
+│   └── file2a
+├── level2b
 │   └── file2b
 ├── file1a
 └── file1b
@@ -128,14 +129,16 @@ for await (const files of filesByDirectory(['level1']/*, { directoriesFirst: fal
   console.log(files);
 }
 // [ 'level1/file1a', 'level1/file1b' ]
-// [ 'level1/level2/file2a', 'level1/level2/file2b' ]
-// [ 'level1/level2/level3/file3a', 'level1/level2/level3/file3b' ]
+// [ 'level1/level2a/file2a' ]
+// [ 'level1/level2a/level3/file3a', 'level1/level2a/level3/file3b' ]
+// [ 'level1/level2b/file2b' ]
 
 for await (const files of filesByDirectory(['level1'], { directoriesFirst: true })) {
   console.log(files);
 }
-// [ 'level1/level2/level3/file3a', 'level1/level2/level3/file3b' ]
-// [ 'level1/level2/file2a', 'level1/level2/file2b' ]
+// [ 'level1/level2a/level3/file3a', 'level1/level2a/level3/file3b' ]
+// [ 'level1/level2a/file2a' ]
+// [ 'level1/level2b/file2b' ]
 // [ 'level1/file1a', 'level1/file1b' ]
 ```
 
