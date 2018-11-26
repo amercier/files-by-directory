@@ -53,8 +53,8 @@ for await (const files of filesByDirectory(['level1'])) {
 
 ```
 [
-  'level1/level2/level3/file3a',
-  'level1/level2/level3/file3b'
+  'level1/file1a',
+  'level1/file1b'
 ]
 ---
 [
@@ -62,12 +62,12 @@ for await (const files of filesByDirectory(['level1'])) {
 ]
 ---
 [
-  'level1/level2b/file2b'
+  'level1/level2a/level3/file3a',
+  'level1/level2a/level3/file3b'
 ]
 ---
 [
-  'level1/file1a',
-  'level1/file1b'
+  'level1/level2b/file2b'
 ]
 ---
 ```
@@ -104,6 +104,39 @@ for await (const files of filesByDirectory(['level1'], { excludeSymlinks: true }
 }
 // [ 'level1/file1a', 'level1/file1b' ]
 // [ 'level2a/file2a', 'level2a/file2b' ]
+```
+
+#### `options.directoriesFirst` (default: `false`)
+
+When set to `true`, proceed directories (recursively) before files.
+
+```bash
+# Directory structure:
+level1
+├── level2
+│   ├── level3
+│   │   ├── file3a
+│   │   └── file3b
+│   ├── file2a
+│   └── file2b
+├── file1a
+└── file1b
+```
+
+```js
+for await (const files of filesByDirectory(['level1']/*, { directoriesFirst: false }*/} )) {
+  console.log(files);
+}
+// [ 'level1/file1a', 'level1/file1b' ]
+// [ 'level1/level2/file2a', 'level1/level2/file2b' ]
+// [ 'level1/level2/level3/file3a', 'level1/level2/level3/file3b' ]
+
+for await (const files of filesByDirectory(['level1'], { directoriesFirst: true })) {
+  console.log(files);
+}
+// [ 'level1/level2/level3/file3a', 'level1/level2/level3/file3b' ]
+// [ 'level1/level2/file2a', 'level1/level2/file2b' ]
+// [ 'level1/file1a', 'level1/file1b' ]
 ```
 
 ## Asynchronous iteration
