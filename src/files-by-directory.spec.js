@@ -1,6 +1,7 @@
 import '@babel/polyfill'; // Required for NodeJS < 10
 import { values } from './async';
 import getFilesByDirectory from './files-by-directory';
+import defaults from './options';
 import { file1a, level1, level2, level2Files, level3, level3Files } from '../fixture';
 
 /** @test {filesByDirectory} */
@@ -49,7 +50,11 @@ describe('filesByDirectory', () => {
 
   describe('options', () => {
     describe('excludeSymlinks', () => {
-      it('exclude symbolic links when excludeSymlinks is true', async () => {
+      it('is false by default', () => {
+        expect(defaults.excludeSymlinks).toBe(false);
+      });
+
+      it('excludes symbolic links when excludeSymlinks is true', async () => {
         const options = { excludeSymlinks: true };
         expect(await values(getFilesByDirectory([level3], options))).toMatchSnapshot();
         expect(await values(getFilesByDirectory([level2], options))).toMatchSnapshot();
@@ -61,6 +66,32 @@ describe('filesByDirectory', () => {
 
       it('includes symbolic links when excludeSymlinks is false', async () => {
         const options = { excludeSymlinks: false };
+        expect(await values(getFilesByDirectory([level3], options))).toMatchSnapshot();
+        expect(await values(getFilesByDirectory([level2], options))).toMatchSnapshot();
+        expect(await values(getFilesByDirectory([level1], options))).toMatchSnapshot();
+        expect(
+          await values(getFilesByDirectory([level3, ...level2Files], options)),
+        ).toMatchSnapshot();
+      });
+    });
+
+    describe('directoriesFirst', () => {
+      it('is false by default', () => {
+        expect(defaults.excludeSymlinks).toBe(false);
+      });
+
+      it('generates files first when directoriesFirst is true', async () => {
+        const options = { directoriesFirst: true };
+        expect(await values(getFilesByDirectory([level3], options))).toMatchSnapshot();
+        expect(await values(getFilesByDirectory([level2], options))).toMatchSnapshot();
+        expect(await values(getFilesByDirectory([level1], options))).toMatchSnapshot();
+        expect(
+          await values(getFilesByDirectory([level3, ...level2Files], options)),
+        ).toMatchSnapshot();
+      });
+
+      it('generates directories first when directoriesFirst is false', async () => {
+        const options = { directoriesFirst: false };
         expect(await values(getFilesByDirectory([level3], options))).toMatchSnapshot();
         expect(await values(getFilesByDirectory([level2], options))).toMatchSnapshot();
         expect(await values(getFilesByDirectory([level1], options))).toMatchSnapshot();

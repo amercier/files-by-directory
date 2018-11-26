@@ -178,18 +178,6 @@ Array [
     File {
       "isDirectory": false,
       "isSymbolicLink": false,
-      "path": "fixture/level1/level2/level3/file3a",
-    },
-    File {
-      "isDirectory": false,
-      "isSymbolicLink": false,
-      "path": "fixture/level1/level2/level3/file3b",
-    },
-  ],
-  Array [
-    File {
-      "isDirectory": false,
-      "isSymbolicLink": false,
       "path": "fixture/level1/level2/file2a",
     },
     File {
@@ -211,6 +199,18 @@ Array [
       "isDirectory": false,
       "isSymbolicLink": true,
       "path": "fixture/level1/level2/link-to-parent-directory",
+    },
+  ],
+  Array [
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": false,
+      "path": "fixture/level1/level2/level3/file3a",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": false,
+      "path": "fixture/level1/level2/level3/file3b",
     },
   ],
 ]
@@ -218,45 +218,6 @@ Array [
 
 exports[`File getFilesByDirectory() generates asynchronously one array of file instances per directory when file is a directory 3`] = `
 Array [
-  Array [
-    File {
-      "isDirectory": false,
-      "isSymbolicLink": false,
-      "path": "fixture/level1/level2/level3/file3a",
-    },
-    File {
-      "isDirectory": false,
-      "isSymbolicLink": false,
-      "path": "fixture/level1/level2/level3/file3b",
-    },
-  ],
-  Array [
-    File {
-      "isDirectory": false,
-      "isSymbolicLink": false,
-      "path": "fixture/level1/level2/file2a",
-    },
-    File {
-      "isDirectory": false,
-      "isSymbolicLink": false,
-      "path": "fixture/level1/level2/file2b",
-    },
-    File {
-      "isDirectory": false,
-      "isSymbolicLink": true,
-      "path": "fixture/level1/level2/link-to-directory",
-    },
-    File {
-      "isDirectory": false,
-      "isSymbolicLink": true,
-      "path": "fixture/level1/level2/link-to-grand-parent-directory",
-    },
-    File {
-      "isDirectory": false,
-      "isSymbolicLink": true,
-      "path": "fixture/level1/level2/link-to-parent-directory",
-    },
-  ],
   Array [
     File {
       "isDirectory": false,
@@ -292,6 +253,45 @@ Array [
       "isDirectory": false,
       "isSymbolicLink": true,
       "path": "fixture/level1/link-to-unexisting-file",
+    },
+  ],
+  Array [
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": false,
+      "path": "fixture/level1/level2/file2a",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": false,
+      "path": "fixture/level1/level2/file2b",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": true,
+      "path": "fixture/level1/level2/link-to-directory",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": true,
+      "path": "fixture/level1/level2/link-to-grand-parent-directory",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": true,
+      "path": "fixture/level1/level2/link-to-parent-directory",
+    },
+  ],
+  Array [
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": false,
+      "path": "fixture/level1/level2/level3/file3a",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": false,
+      "path": "fixture/level1/level2/level3/file3b",
     },
   ],
 ]
