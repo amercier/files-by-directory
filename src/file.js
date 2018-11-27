@@ -54,13 +54,19 @@ export default class File {
    * @param {Object} options Traversing options, see {@link defaults}.
    * @returns {AsynchronousGenerator<File[]>} Generates one array of File instances per directory.
    */
-  async *getFilesByDirectory(options = {}) {
+  async *getFilesByDirectory({
+    directoriesFirst = defaults.directoriesFirst,
+    showDirectories = defaults.showDirectories,
+    ...otherOptions
+  } = {}) {
+    const options = { directoriesFirst, showDirectories, ...otherOptions };
+
     if (this.isDirectory) {
       const files = [];
       const directories = [];
       for await (const child of this.getChildren(options)) {
         if (child.isDirectory) {
-          if (options.directoriesFirst) {
+          if (directoriesFirst) {
             yield* child.getFilesByDirectory(options);
           } else {
             directories.push(child);
@@ -70,13 +76,13 @@ export default class File {
         }
       }
       if (files.length > 0) {
-        yield files;
+        yield showDirectories ? [this, ...files] : files;
       }
       for (const directory of directories) {
         yield* directory.getFilesByDirectory(options);
       }
     } else {
-      yield [this];
+      yield showDirectories ? [{}, this] : [this];
     }
   }
 
