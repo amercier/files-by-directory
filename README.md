@@ -97,13 +97,13 @@ for await (const files of filesByDirectory(['level1']/*, { excludeSymlinks: fals
   console.log(files);
 }
 // [ 'level1/level2b', 'level1/file1a', 'level1/file1b' ]
-// [ 'level2a/file2a', 'level2a/file2b' ]
+// [ 'level1/level2a/file2a', 'level1/level2a/file2b' ]
 
 for await (const files of filesByDirectory(['level1'], { excludeSymlinks: true })) {
   console.log(files);
 }
 // [ 'level1/file1a', 'level1/file1b' ]
-// [ 'level2a/file2a', 'level2a/file2b' ]
+// [ 'level1/level2a/file2a', 'level1/level2a/file2b' ]
 ```
 
 #### `options.directoriesFirst` (default: `false`)
