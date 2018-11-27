@@ -77,7 +77,8 @@ for await (const files of filesByDirectory(['level1'])) {
 - If a path is encountered twice, it is only generated once.
 - Symbolic links are treated as regular files, even though they link to directories.
 
-#### `options.excludeSymlinks` (default: `false`)
+<details>
+  <summary><code>options.excludeSymlinks</code> (default: <code>false</code>)</summary>
 
 When set to `true`, excludes symbolic links from results:
 
@@ -106,7 +107,10 @@ for await (const files of filesByDirectory(['level1'], { excludeSymlinks: true }
 // [ 'level1/level2a/file2a', 'level1/level2a/file2b' ]
 ```
 
-#### `options.directoriesFirst` (default: `false`)
+</details>
+
+<details>
+  <summary><code>options.directoriesFirst</code> (default: <code>false</code>)</summary>
 
 When set to `true`, proceed directories (recursively) before files.
 
@@ -142,7 +146,10 @@ for await (const files of filesByDirectory(['level1'], { directoriesFirst: true 
 // [ 'level1/file1a', 'level1/file1b' ]
 ```
 
-#### `options.showDirectories` (default: `false`)
+</details>
+
+<details>
+  <summary><code>options.showDirectories</code> (default: <code>false</code>)</summary>
 
 When set to `true`, includes an entry containing the directory.
 
@@ -175,6 +182,8 @@ for await (const [directory, ...files] of filesByDirectory(['level1'], { showDir
 // level1 [ 'level1/file1a', 'level1/file1b' ]
 // level1/level2 [ 'level1/level2/file2a', 'level1/level2/file2b' ]
 ```
+
+</details>
 
 ## Asynchronous iteration
 
