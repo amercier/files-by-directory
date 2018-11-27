@@ -142,6 +142,40 @@ for await (const files of filesByDirectory(['level1'], { directoriesFirst: true 
 // [ 'level1/file1a', 'level1/file1b' ]
 ```
 
+#### `options.showDirectories` (default: `false`)
+
+When set to `true`, includes an entry containing the directory.
+
+```bash
+# Directory structure:
+level1
+├── level2
+│   ├── file2a
+│   └── file2b
+├── file1a
+└── file1b
+```
+
+```js
+for await (const files of filesByDirectory(['level1']/*, { showDirectories: false }*/} )) {
+  console.log(files);
+}
+// [ 'level1/file1a', 'level1/file1b' ]
+// [ 'level1/level2/file2a', 'level1/level2/file2b' ]
+
+for await (const files of filesByDirectory(['level1'], { showDirectories: true })) {
+  console.log(files);
+}
+// [ 'level1', 'level1/file1a', 'level1/file1b' ]
+// [ 'level1/level2', 'level1/level2/file2a', 'level1/level2/file2b' ]
+
+for await (const [directory, ...files] of filesByDirectory(['level1'], { showDirectories: true })) {
+  console.log(directory, files);
+}
+// level1 [ 'level1/file1a', 'level1/file1b' ]
+// level1/level2 [ 'level1/level2/file2a', 'level1/level2/file2b' ]
+```
+
 ## Asynchronous iteration
 
 [Asynchronous iteration] using `for-await-of` syntax requires Node 10+. For older version of NodeJS, either use:
