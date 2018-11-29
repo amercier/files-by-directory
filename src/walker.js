@@ -1,6 +1,9 @@
 import regeneratorRuntime from 'regenerator-runtime';
+import { dirname } from 'path';
 import { asyncFilter } from './async';
+import File from './file';
 import defaults from './options';
+import { isUniqueAndNotDescendant } from './path';
 
 /**
  * File system walker.
@@ -58,6 +61,48 @@ export default class Walker {
     }
 
     // Yield directory arrays, if any (directoriesFirst = true)
+    for (const directory of directories) {
+      yield* this.getFilesByDirectory(directory);
+    }
+  }
+
+  /**
+   * Generate array of File instances for each directory, recursively.
+   *
+   * Process directories first, then files. If multiple files belong to the same directory, they are
+   * grouped together. If a path is encountered twice, it is only generated once. Symbolic links are
+   * treated as regular files, even though they link to directories.
+   *
+   * @async
+   * @generator
+   * @param {string[]} paths Paths to files or directories.
+   * @param {Object} options Traversing options, see {@link defaults}.
+   * @return {AsyncIterator<File[]>} Generates one array of File instances per directory.
+   */
+  async *getFilesByDirectoryFromPaths(paths) {
+    const regularFiles = {};
+    const directories = [];
+
+    for await (const file of File.fromPaths(paths.filter(isUniqueAndNotDescendant))) {
+      if (file.isDirectory) {
+        if (this.directoriesFirst) {
+          yield* this.getFilesByDirectory(file);
+        } else {
+          directories.push(file);
+        }
+      } else if (!this.excludeSymlinks || !file.isSymbolicLink) {
+        const parent = dirname(file.path);
+        if (!regularFiles[parent]) {
+          regularFiles[parent] = [];
+        }
+        regularFiles[parent].push(file);
+      }
+    }
+
+    for (const files of Object.values(regularFiles)) {
+      yield files;
+    }
+
     for (const directory of directories) {
       yield* this.getFilesByDirectory(directory);
     }
