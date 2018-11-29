@@ -3,6 +3,7 @@ import regeneratorRuntime from 'regenerator-runtime';
 import { asyncMap } from './async';
 import File from './file';
 import { isUniqueAndNotDescendant } from './path';
+import Walker from './walker';
 
 /**
  * Generate array of File instances for each directory, recursively.
@@ -20,11 +21,12 @@ import { isUniqueAndNotDescendant } from './path';
 async function* fileObjectsByDirectory(paths, options = {}) {
   const regularFiles = {};
   const directories = [];
+  const walker = new Walker(options);
 
   for await (const file of File.fromPaths(paths.filter(isUniqueAndNotDescendant))) {
     if (file.isDirectory) {
       if (options.directoriesFirst) {
-        yield* file.getFilesByDirectory(options);
+        yield* walker.getFilesByDirectory(file);
       } else {
         directories.push(file);
       }
@@ -42,7 +44,7 @@ async function* fileObjectsByDirectory(paths, options = {}) {
   }
 
   for (const directory of directories) {
-    yield* directory.getFilesByDirectory(options);
+    yield* walker.getFilesByDirectory(directory);
   }
 }
 

@@ -1,8 +1,7 @@
 import regeneratorRuntime from 'regenerator-runtime';
 import { join } from 'path';
-import { asyncFilter, asyncMap } from './async';
+import { asyncMap } from './async';
 import { lStat, readDir } from './fs';
-import defaults from './options';
 
 /**
  * File
@@ -34,56 +33,14 @@ export default class File {
    *
    * @async
    * @generator
-   * @param {Object} options Traversing options, see {@link defaults}.
    * @returns {AsynchronousGenerator<File>} Generates one instance of File per child.
    */
-  async *getChildren({ excludeSymlinks = defaults.excludeSymlinks } = {}) {
+  async *getChildren() {
     if (!this.isDirectory) {
       throw new Error(`File is not a directory: ${this}`);
     }
 
-    const children = this.constructor.readDir(this.path);
-    yield* excludeSymlinks ? asyncFilter(children, child => !child.isSymbolicLink) : children;
-  }
-
-  /**
-   * Generate array of File instances for each directory, recursively.
-   *
-   * @async
-   * @generator
-   * @param {Object} options Traversing options, see {@link defaults}.
-   * @returns {AsynchronousGenerator<File[]>} Generates one array of File instances per directory.
-   */
-  async *getFilesByDirectory({
-    directoriesFirst = defaults.directoriesFirst,
-    showDirectories = defaults.showDirectories,
-    ...otherOptions
-  } = {}) {
-    const options = { directoriesFirst, showDirectories, ...otherOptions };
-
-    if (this.isDirectory) {
-      const files = [];
-      const directories = [];
-      for await (const child of this.getChildren(options)) {
-        if (child.isDirectory) {
-          if (directoriesFirst) {
-            yield* child.getFilesByDirectory(options);
-          } else {
-            directories.push(child);
-          }
-        } else {
-          files.push(child);
-        }
-      }
-      if (files.length > 0) {
-        yield showDirectories ? [this, ...files] : files;
-      }
-      for (const directory of directories) {
-        yield* directory.getFilesByDirectory(options);
-      }
-    } else {
-      yield showDirectories ? [{}, this] : [this];
-    }
+    yield* this.constructor.readDir(this.path);
   }
 
   /**
