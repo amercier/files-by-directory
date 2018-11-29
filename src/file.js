@@ -96,7 +96,7 @@ export default class File {
    */
   static fromDirent(directory, dirent) {
     const path = join(directory, dirent.name);
-    return new File(path, dirent.isDirectory(), dirent.isSymbolicLink());
+    return new this(path, dirent.isDirectory(), dirent.isSymbolicLink());
   }
 
   /**
@@ -108,7 +108,7 @@ export default class File {
    */
   static async fromPath(path) {
     const stats = await lStat(path);
-    return new File(path, stats.isDirectory(), stats.isSymbolicLink());
+    return new this(path, stats.isDirectory(), stats.isSymbolicLink());
   }
 
   /**
@@ -120,7 +120,7 @@ export default class File {
    * @returns {AsyncGenenerator<File>} One instance of File per path.
    */
   static fromPaths(paths) {
-    return asyncMap(paths, this.fromPath);
+    return asyncMap(paths, this.fromPath.bind(this));
   }
 
   /**
