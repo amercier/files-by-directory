@@ -1,5 +1,22 @@
 import escape from 'escape-string-regexp';
-import { relative, sep } from 'path';
+import { dirname, relative, sep } from 'path';
+
+/**
+ * Group paths by their parent path.
+ *
+ * @param {string[]} paths Paths.
+ * @returns {Object} Plain object indexed by parent paths containing paths arrays.
+ */
+export function byDirname(paths) {
+  return paths.reduce((acc, file) => {
+    const parent = dirname(file.path);
+    if (!acc[parent]) {
+      acc[parent] = [];
+    }
+    acc[parent].push(file);
+    return acc;
+  }, {});
+}
 
 /**
  * Regular expression that matches all "ascendant" paths:
