@@ -93,45 +93,6 @@ describe('File', () => {
     });
   });
 
-  describe('getFilesByDirectory()', () => {
-    it('returns an iterator', () => {
-      const iterator = new File(file1a, false).getFilesByDirectory();
-      expect(iterator.next).toBeFunction();
-    });
-
-    it('generates asynchronously one array containing the file when file is a file', async () => {
-      expect(await values(new File(...file1aArgs).getFilesByDirectory())).toMatchSnapshot();
-    });
-
-    it('generates asynchronously one array of file instances per directory when file is a directory', async () => {
-      expect(await values(new File(...level3Args).getFilesByDirectory())).toMatchSnapshot();
-      expect(await values(new File(...level2Args).getFilesByDirectory())).toMatchSnapshot();
-      expect(await values(new File(...level1Args).getFilesByDirectory())).toMatchSnapshot();
-    });
-
-    it('generates asynchronously one array containing the file when file is an non-existing file', async () => {
-      expect(await values(new File(...unexistingFileArgs).getFilesByDirectory())).toMatchSnapshot();
-    });
-
-    it('generates asynchronously one array containing the file when file links to a file', async () => {
-      expect(
-        await values(new File(...linkToSiblingFileArgs).getFilesByDirectory()),
-      ).toMatchSnapshot();
-    });
-
-    it('generates asynchronously one array containing the file when file links to a directory', async () => {
-      expect(
-        await values(new File(...linkToSiblingFileArgs).getFilesByDirectory()),
-      ).toMatchSnapshot();
-    });
-
-    it('generates asynchronously one array containing the file when file links to a non-existing file', async () => {
-      expect(
-        await values(new File(...linkToUnexistingFileArgs).getFilesByDirectory()),
-      ).toMatchSnapshot();
-    });
-  });
-
   describe('static fromDirent()', () => {
     const argsToDirent = ([path, isDirectory, isSymbolicLink]) => ({
       name: basename(path),

@@ -1,0 +1,238 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Walker getChildren() generates asynchronously File instance per child when file is a directory 1`] = `
+Array [
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": false,
+    "path": "fixture/level1/level2/level3/file3a",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": false,
+    "path": "fixture/level1/level2/level3/file3b",
+  },
+]
+`;
+
+exports[`Walker getChildren() generates asynchronously File instance per child when file is a directory 2`] = `
+Array [
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": false,
+    "path": "fixture/level1/level2/file2a",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": false,
+    "path": "fixture/level1/level2/file2b",
+  },
+  File {
+    "isDirectory": true,
+    "isSymbolicLink": false,
+    "path": "fixture/level1/level2/level3",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": true,
+    "path": "fixture/level1/level2/link-to-directory",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": true,
+    "path": "fixture/level1/level2/link-to-grand-parent-directory",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": true,
+    "path": "fixture/level1/level2/link-to-parent-directory",
+  },
+]
+`;
+
+exports[`Walker getChildren() generates asynchronously File instance per child when file is a directory 3`] = `
+Array [
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": false,
+    "path": "fixture/level1/file1a",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": false,
+    "path": "fixture/level1/file1b",
+  },
+  File {
+    "isDirectory": true,
+    "isSymbolicLink": false,
+    "path": "fixture/level1/level2",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": true,
+    "path": "fixture/level1/link-to-descendant-directory",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": true,
+    "path": "fixture/level1/link-to-descendant-file",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": true,
+    "path": "fixture/level1/link-to-sibling-directory",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": true,
+    "path": "fixture/level1/link-to-sibling-file",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": true,
+    "path": "fixture/level1/link-to-unexisting-file",
+  },
+]
+`;
+
+exports[`Walker getFilesByDirectory() generates asynchronously one array of File instances per directory when file is a directory 1`] = `
+Array [
+  Array [
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": false,
+      "path": "fixture/level1/level2/level3/file3a",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": false,
+      "path": "fixture/level1/level2/level3/file3b",
+    },
+  ],
+]
+`;
+
+exports[`Walker getFilesByDirectory() generates asynchronously one array of File instances per directory when file is a directory 2`] = `
+Array [
+  Array [
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": false,
+      "path": "fixture/level1/level2/file2a",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": false,
+      "path": "fixture/level1/level2/file2b",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": true,
+      "path": "fixture/level1/level2/link-to-directory",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": true,
+      "path": "fixture/level1/level2/link-to-grand-parent-directory",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": true,
+      "path": "fixture/level1/level2/link-to-parent-directory",
+    },
+  ],
+  Array [
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": false,
+      "path": "fixture/level1/level2/level3/file3a",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": false,
+      "path": "fixture/level1/level2/level3/file3b",
+    },
+  ],
+]
+`;
+
+exports[`Walker getFilesByDirectory() generates asynchronously one array of File instances per directory when file is a directory 3`] = `
+Array [
+  Array [
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": false,
+      "path": "fixture/level1/file1a",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": false,
+      "path": "fixture/level1/file1b",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": true,
+      "path": "fixture/level1/link-to-descendant-directory",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": true,
+      "path": "fixture/level1/link-to-descendant-file",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": true,
+      "path": "fixture/level1/link-to-sibling-directory",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": true,
+      "path": "fixture/level1/link-to-sibling-file",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": true,
+      "path": "fixture/level1/link-to-unexisting-file",
+    },
+  ],
+  Array [
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": false,
+      "path": "fixture/level1/level2/file2a",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": false,
+      "path": "fixture/level1/level2/file2b",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": true,
+      "path": "fixture/level1/level2/link-to-directory",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": true,
+      "path": "fixture/level1/level2/link-to-grand-parent-directory",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": true,
+      "path": "fixture/level1/level2/link-to-parent-directory",
+    },
+  ],
+  Array [
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": false,
+      "path": "fixture/level1/level2/level3/file3a",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": false,
+      "path": "fixture/level1/level2/level3/file3b",
+    },
+  ],
+]
+`;
