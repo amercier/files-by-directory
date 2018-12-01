@@ -120,15 +120,6 @@ describe('isDir', () => {
 
 /** @test {readDir} */
 describe('readDir', () => {
-  const expectedFiles = [
-    'file2a',
-    'file2b',
-    'level3',
-    'link-to-directory',
-    'link-to-grand-parent-directory',
-    'link-to-parent-directory',
-  ];
-
   it('is a function', () => {
     expect(readDir).toBeFunction();
   });
@@ -142,7 +133,7 @@ describe('readDir', () => {
   });
 
   it('resolves to the list of files when directory exists', async () => {
-    expect(await readDir(level2)).toEqual(expectedFiles);
+    expect(await readDir(level2)).toMatchSnapshot();
   });
 
   it('rejects when file does not exist', async () => {
@@ -154,7 +145,7 @@ describe('readDir', () => {
   });
 
   it('resolves to the list of files when symlink links to an existing directory', async () => {
-    expect(await readDir(linkToSiblingDirectory)).toEqual(expectedFiles);
+    expect(await readDir(linkToSiblingDirectory)).toMatchSnapshot();
   });
 
   it('rejects when symlink links to unexisting file', async () => {

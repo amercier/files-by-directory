@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`readDir resolves to the list of files when directory exists 1`] = `
+Array [
+  "file2a",
+  "file2b",
+  "level3",
+  "link-to-sibling-directory",
+  "link-to-sibling-file",
+]
+`;
+
+exports[`readDir resolves to the list of files when symlink links to an existing directory 1`] = `
+Array [
+  "file3a",
+  "file3b",
+]
+`;

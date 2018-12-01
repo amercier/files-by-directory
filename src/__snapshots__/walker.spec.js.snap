@@ -35,17 +35,12 @@ Array [
   File {
     "isDirectory": false,
     "isSymbolicLink": true,
-    "path": "fixture/level1/level2/link-to-directory",
+    "path": "fixture/level1/level2/link-to-sibling-directory",
   },
   File {
     "isDirectory": false,
     "isSymbolicLink": true,
-    "path": "fixture/level1/level2/link-to-grand-parent-directory",
-  },
-  File {
-    "isDirectory": false,
-    "isSymbolicLink": true,
-    "path": "fixture/level1/level2/link-to-parent-directory",
+    "path": "fixture/level1/level2/link-to-sibling-file",
   },
 ]
 `;
@@ -70,6 +65,11 @@ Array [
   File {
     "isDirectory": false,
     "isSymbolicLink": true,
+    "path": "fixture/level1/link-to-current-directory",
+  },
+  File {
+    "isDirectory": false,
+    "isSymbolicLink": true,
     "path": "fixture/level1/link-to-descendant-directory",
   },
   File {
@@ -80,12 +80,12 @@ Array [
   File {
     "isDirectory": false,
     "isSymbolicLink": true,
-    "path": "fixture/level1/link-to-sibling-directory",
+    "path": "fixture/level1/link-to-grand-parent-directory",
   },
   File {
     "isDirectory": false,
     "isSymbolicLink": true,
-    "path": "fixture/level1/link-to-sibling-file",
+    "path": "fixture/level1/link-to-parent-directory",
   },
   File {
     "isDirectory": false,
@@ -128,17 +128,12 @@ Array [
     File {
       "isDirectory": false,
       "isSymbolicLink": true,
-      "path": "fixture/level1/level2/link-to-directory",
+      "path": "fixture/level1/level2/link-to-sibling-directory",
     },
     File {
       "isDirectory": false,
       "isSymbolicLink": true,
-      "path": "fixture/level1/level2/link-to-grand-parent-directory",
-    },
-    File {
-      "isDirectory": false,
-      "isSymbolicLink": true,
-      "path": "fixture/level1/level2/link-to-parent-directory",
+      "path": "fixture/level1/level2/link-to-sibling-file",
     },
   ],
   Array [
@@ -172,6 +167,11 @@ Array [
     File {
       "isDirectory": false,
       "isSymbolicLink": true,
+      "path": "fixture/level1/link-to-current-directory",
+    },
+    File {
+      "isDirectory": false,
+      "isSymbolicLink": true,
       "path": "fixture/level1/link-to-descendant-directory",
     },
     File {
@@ -182,12 +182,12 @@ Array [
     File {
       "isDirectory": false,
       "isSymbolicLink": true,
-      "path": "fixture/level1/link-to-sibling-directory",
+      "path": "fixture/level1/link-to-grand-parent-directory",
     },
     File {
       "isDirectory": false,
       "isSymbolicLink": true,
-      "path": "fixture/level1/link-to-sibling-file",
+      "path": "fixture/level1/link-to-parent-directory",
     },
     File {
       "isDirectory": false,
@@ -209,17 +209,12 @@ Array [
     File {
       "isDirectory": false,
       "isSymbolicLink": true,
-      "path": "fixture/level1/level2/link-to-directory",
+      "path": "fixture/level1/level2/link-to-sibling-directory",
     },
     File {
       "isDirectory": false,
       "isSymbolicLink": true,
-      "path": "fixture/level1/level2/link-to-grand-parent-directory",
-    },
-    File {
-      "isDirectory": false,
-      "isSymbolicLink": true,
-      "path": "fixture/level1/level2/link-to-parent-directory",
+      "path": "fixture/level1/level2/link-to-sibling-file",
     },
   ],
   Array [
