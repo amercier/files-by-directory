@@ -17,9 +17,9 @@ const file1aArgs = [file1a, false, false];
 const level1Args = [level1, true, false];
 const level2Args = [level2, true, false];
 const level3Args = [level3, true, false];
-const linkToSiblingDirectoryArgs = [linkToSiblingDirectory, false, true];
-const linkToSiblingFileArgs = [linkToSiblingFile, false, true];
-const linkToUnexistingFileArgs = [linkToUnexistingFile, false, true];
+const linkToSiblingDirectoryArgs = [linkToSiblingDirectory, undefined, true];
+const linkToSiblingFileArgs = [linkToSiblingFile, undefined, true];
+const linkToUnexistingFileArgs = [linkToUnexistingFile, undefined, true];
 const unexistingFileArgs = [unexistingFile, false, false];
 
 describe('File', () => {

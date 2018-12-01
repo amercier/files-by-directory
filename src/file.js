@@ -53,7 +53,11 @@ export default class File {
    */
   static fromDirent(directory, dirent) {
     const path = join(directory, dirent.name);
-    return new this(path, dirent.isDirectory(), dirent.isSymbolicLink());
+    return new this(
+      path,
+      dirent.isSymbolicLink() ? undefined : dirent.isDirectory(),
+      dirent.isSymbolicLink(),
+    );
   }
 
   /**
@@ -65,7 +69,11 @@ export default class File {
    */
   static async fromPath(path) {
     const stats = await lStat(path);
-    return new this(path, stats.isDirectory(), stats.isSymbolicLink());
+    return new this(
+      path,
+      stats.isSymbolicLink() ? undefined : stats.isDirectory(),
+      stats.isSymbolicLink(),
+    );
   }
 
   /**
