@@ -380,6 +380,90 @@ Array [
 ]
 `;
 
+exports[`filesByDirectory options followSymlinks does not resolve symbolic links when followSymlinks is false 1`] = `
+Array [
+  Array [
+    "fixture/level1/level2/level3/file3a",
+    "fixture/level1/level2/level3/file3b",
+  ],
+]
+`;
+
+exports[`filesByDirectory options followSymlinks does not resolve symbolic links when followSymlinks is false 2`] = `
+Array [
+  Array [
+    "fixture/level1/level2/file2a",
+    "fixture/level1/level2/file2b",
+    "fixture/level1/level2/link-to-sibling-directory",
+    "fixture/level1/level2/link-to-sibling-file",
+  ],
+  Array [
+    "fixture/level1/level2/level3/file3a",
+    "fixture/level1/level2/level3/file3b",
+  ],
+]
+`;
+
+exports[`filesByDirectory options followSymlinks does not resolve symbolic links when followSymlinks is false 3`] = `
+Array [
+  Array [
+    "fixture/level1/level2/file2a",
+    "fixture/level1/level2/file2b",
+    "fixture/level1/level2/link-to-sibling-file",
+    "fixture/level1/level2/link-to-sibling-directory",
+  ],
+  Array [
+    "fixture/level1/level2/level3/file3a",
+    "fixture/level1/level2/level3/file3b",
+  ],
+]
+`;
+
+exports[`filesByDirectory options followSymlinks resolves symbolic links when followSymlinks is true 1`] = `
+Array [
+  Array [
+    "fixture/level1/level2/level3/file3a",
+    "fixture/level1/level2/level3/file3b",
+  ],
+]
+`;
+
+exports[`filesByDirectory options followSymlinks resolves symbolic links when followSymlinks is true 2`] = `
+Array [
+  Array [
+    "fixture/level1/level2/file2a",
+    "fixture/level1/level2/file2b",
+    "fixture/level1/level2/link-to-sibling-file",
+  ],
+  Array [
+    "fixture/level1/level2/level3/file3a",
+    "fixture/level1/level2/level3/file3b",
+  ],
+  Array [
+    "fixture/level1/level2/link-to-sibling-directory/file3a",
+    "fixture/level1/level2/link-to-sibling-directory/file3b",
+  ],
+]
+`;
+
+exports[`filesByDirectory options followSymlinks resolves symbolic links when followSymlinks is true 3`] = `
+Array [
+  Array [
+    "fixture/level1/level2/file2a",
+    "fixture/level1/level2/file2b",
+    "fixture/level1/level2/link-to-sibling-file",
+  ],
+  Array [
+    "fixture/level1/level2/level3/file3a",
+    "fixture/level1/level2/level3/file3b",
+  ],
+  Array [
+    "fixture/level1/level2/link-to-sibling-directory/file3a",
+    "fixture/level1/level2/link-to-sibling-directory/file3b",
+  ],
+]
+`;
+
 exports[`filesByDirectory options showDirectories generates files with their directory when showDirectories is true 1`] = `
 Array [
   Array [

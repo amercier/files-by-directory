@@ -1,5 +1,5 @@
 import regeneratorRuntime from 'regenerator-runtime';
-import { asyncFilter } from './async';
+import { asyncFilter, asyncMap } from './async';
 import File from './file';
 import defaults from './options';
 import { byDirname, isUniqueAndNotDescendant } from './path';
@@ -28,6 +28,8 @@ export default class Walker {
   async *getFiles(files) {
     if (this.excludeSymlinks) {
       yield* asyncFilter(files, child => !child.isSymbolicLink);
+    } else if (this.followSymlinks) {
+      yield* asyncMap(files, child => child.followSymbolicLink());
     } else {
       yield* files;
     }
