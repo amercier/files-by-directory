@@ -1,5 +1,18 @@
-import { lstat, readdir } from 'fs';
+import { lstat, readdir, stat as sstat } from 'fs';
 import { promisify } from './async';
+
+/**
+ * Promisified version of `fs.stat()`: asynchronous `stat(2)`.
+ *
+ * @see {@link http://man7.org/linux/man-pages/man2/stat.2.html|stat(2)}
+ * @see {@link https://nodejs.org/api/fs.html#fs_fs_stat_path_options_callback|fs.stat()}
+ *
+ * @async
+ * @param {string|Buffer|URL} path
+ * @param {Object} options Options passed to `fs.stat()` (optional).
+ * @return {Promise<fs.Stats>} The `fs.Stats` object.
+ */
+export const stat = promisify(sstat);
 
 /**
  * Promisified version of `fs.lstat()`: asynchronous `lstat(2)`.

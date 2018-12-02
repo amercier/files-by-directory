@@ -99,5 +99,29 @@ describe('filesByDirectory', () => {
         await testGetFilesByDirectoryWithOptions({ showDirectories: false });
       });
     });
+
+    describe('followSymlinks', () => {
+      it('is false by default', () => {
+        expect(defaults.followSymlinks).toBe(false);
+      });
+
+      it('does not resolve symbolic links when followSymlinks is false', async () => {
+        const options = { followSymlinks: false };
+        expect(await values(getFilesByDirectory([level3], options))).toMatchSnapshot();
+        expect(await values(getFilesByDirectory([level2], options))).toMatchSnapshot();
+        expect(
+          await values(getFilesByDirectory([level3, ...level2Files], options)),
+        ).toMatchSnapshot();
+      });
+
+      it('resolves symbolic links when followSymlinks is true', async () => {
+        const options = { followSymlinks: true };
+        expect(await values(getFilesByDirectory([level3], options))).toMatchSnapshot();
+        expect(await values(getFilesByDirectory([level2], options))).toMatchSnapshot();
+        expect(
+          await values(getFilesByDirectory([level3, ...level2Files], options)),
+        ).toMatchSnapshot();
+      });
+    });
   });
 });

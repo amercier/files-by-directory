@@ -22,9 +22,8 @@ Array [
   Array [
     "fixture/level1/level2/file2a",
     "fixture/level1/level2/file2b",
-    "fixture/level1/level2/link-to-directory",
-    "fixture/level1/level2/link-to-grand-parent-directory",
-    "fixture/level1/level2/link-to-parent-directory",
+    "fixture/level1/level2/link-to-sibling-directory",
+    "fixture/level1/level2/link-to-sibling-file",
   ],
   Array [
     "fixture/level1/level2/level3/file3a",
@@ -47,9 +46,8 @@ Array [
   Array [
     "fixture/level1/level2/file2a",
     "fixture/level1/level2/file2b",
-    "fixture/level1/level2/link-to-directory",
-    "fixture/level1/level2/link-to-grand-parent-directory",
-    "fixture/level1/level2/link-to-parent-directory",
+    "fixture/level1/level2/link-to-sibling-file",
+    "fixture/level1/level2/link-to-sibling-directory",
   ],
   Array [
     "fixture/level1/level2/level3/file3a",
@@ -67,9 +65,8 @@ Array [
   Array [
     "fixture/level1/level2/file2a",
     "fixture/level1/level2/file2b",
-    "fixture/level1/level2/link-to-directory",
-    "fixture/level1/level2/link-to-grand-parent-directory",
-    "fixture/level1/level2/link-to-parent-directory",
+    "fixture/level1/level2/link-to-sibling-file",
+    "fixture/level1/level2/link-to-sibling-directory",
   ],
 ]
 `;
@@ -79,9 +76,8 @@ Array [
   Array [
     "fixture/level1/level2/file2a",
     "fixture/level1/level2/file2b",
-    "fixture/level1/level2/link-to-directory",
-    "fixture/level1/level2/link-to-grand-parent-directory",
-    "fixture/level1/level2/link-to-parent-directory",
+    "fixture/level1/level2/link-to-sibling-directory",
+    "fixture/level1/level2/link-to-sibling-file",
   ],
   Array [
     "fixture/level1/level2/level3/file3a",
@@ -95,9 +91,8 @@ Array [
   Array [
     "fixture/level1/level2/file2a",
     "fixture/level1/level2/file2b",
-    "fixture/level1/level2/link-to-directory",
-    "fixture/level1/level2/link-to-grand-parent-directory",
-    "fixture/level1/level2/link-to-parent-directory",
+    "fixture/level1/level2/link-to-sibling-directory",
+    "fixture/level1/level2/link-to-sibling-file",
   ],
   Array [
     "fixture/level1/level2/level3/file3a",
@@ -155,9 +150,8 @@ Array [
   Array [
     "fixture/level1/level2/file2a",
     "fixture/level1/level2/file2b",
-    "fixture/level1/level2/link-to-directory",
-    "fixture/level1/level2/link-to-grand-parent-directory",
-    "fixture/level1/level2/link-to-parent-directory",
+    "fixture/level1/level2/link-to-sibling-directory",
+    "fixture/level1/level2/link-to-sibling-file",
   ],
   Array [
     "fixture/level1/level2/level3/file3a",
@@ -171,18 +165,18 @@ Array [
   Array [
     "fixture/level1/file1a",
     "fixture/level1/file1b",
+    "fixture/level1/link-to-current-directory",
     "fixture/level1/link-to-descendant-directory",
     "fixture/level1/link-to-descendant-file",
-    "fixture/level1/link-to-sibling-directory",
-    "fixture/level1/link-to-sibling-file",
+    "fixture/level1/link-to-grand-parent-directory",
+    "fixture/level1/link-to-parent-directory",
     "fixture/level1/link-to-unexisting-file",
   ],
   Array [
     "fixture/level1/level2/file2a",
     "fixture/level1/level2/file2b",
-    "fixture/level1/level2/link-to-directory",
-    "fixture/level1/level2/link-to-grand-parent-directory",
-    "fixture/level1/level2/link-to-parent-directory",
+    "fixture/level1/level2/link-to-sibling-directory",
+    "fixture/level1/level2/link-to-sibling-file",
   ],
   Array [
     "fixture/level1/level2/level3/file3a",
@@ -196,9 +190,8 @@ Array [
   Array [
     "fixture/level1/level2/file2a",
     "fixture/level1/level2/file2b",
-    "fixture/level1/level2/link-to-directory",
-    "fixture/level1/level2/link-to-grand-parent-directory",
-    "fixture/level1/level2/link-to-parent-directory",
+    "fixture/level1/level2/link-to-sibling-file",
+    "fixture/level1/level2/link-to-sibling-directory",
   ],
   Array [
     "fixture/level1/level2/level3/file3a",
@@ -225,9 +218,8 @@ Array [
   Array [
     "fixture/level1/level2/file2a",
     "fixture/level1/level2/file2b",
-    "fixture/level1/level2/link-to-directory",
-    "fixture/level1/level2/link-to-grand-parent-directory",
-    "fixture/level1/level2/link-to-parent-directory",
+    "fixture/level1/level2/link-to-sibling-directory",
+    "fixture/level1/level2/link-to-sibling-file",
   ],
 ]
 `;
@@ -241,17 +233,17 @@ Array [
   Array [
     "fixture/level1/level2/file2a",
     "fixture/level1/level2/file2b",
-    "fixture/level1/level2/link-to-directory",
-    "fixture/level1/level2/link-to-grand-parent-directory",
-    "fixture/level1/level2/link-to-parent-directory",
+    "fixture/level1/level2/link-to-sibling-directory",
+    "fixture/level1/level2/link-to-sibling-file",
   ],
   Array [
     "fixture/level1/file1a",
     "fixture/level1/file1b",
+    "fixture/level1/link-to-current-directory",
     "fixture/level1/link-to-descendant-directory",
     "fixture/level1/link-to-descendant-file",
-    "fixture/level1/link-to-sibling-directory",
-    "fixture/level1/link-to-sibling-file",
+    "fixture/level1/link-to-grand-parent-directory",
+    "fixture/level1/link-to-parent-directory",
     "fixture/level1/link-to-unexisting-file",
   ],
 ]
@@ -266,9 +258,8 @@ Array [
   Array [
     "fixture/level1/level2/file2a",
     "fixture/level1/level2/file2b",
-    "fixture/level1/level2/link-to-directory",
-    "fixture/level1/level2/link-to-grand-parent-directory",
-    "fixture/level1/level2/link-to-parent-directory",
+    "fixture/level1/level2/link-to-sibling-file",
+    "fixture/level1/level2/link-to-sibling-directory",
   ],
 ]
 `;
@@ -339,9 +330,8 @@ Array [
   Array [
     "fixture/level1/level2/file2a",
     "fixture/level1/level2/file2b",
-    "fixture/level1/level2/link-to-directory",
-    "fixture/level1/level2/link-to-grand-parent-directory",
-    "fixture/level1/level2/link-to-parent-directory",
+    "fixture/level1/level2/link-to-sibling-directory",
+    "fixture/level1/level2/link-to-sibling-file",
   ],
   Array [
     "fixture/level1/level2/level3/file3a",
@@ -355,18 +345,18 @@ Array [
   Array [
     "fixture/level1/file1a",
     "fixture/level1/file1b",
+    "fixture/level1/link-to-current-directory",
     "fixture/level1/link-to-descendant-directory",
     "fixture/level1/link-to-descendant-file",
-    "fixture/level1/link-to-sibling-directory",
-    "fixture/level1/link-to-sibling-file",
+    "fixture/level1/link-to-grand-parent-directory",
+    "fixture/level1/link-to-parent-directory",
     "fixture/level1/link-to-unexisting-file",
   ],
   Array [
     "fixture/level1/level2/file2a",
     "fixture/level1/level2/file2b",
-    "fixture/level1/level2/link-to-directory",
-    "fixture/level1/level2/link-to-grand-parent-directory",
-    "fixture/level1/level2/link-to-parent-directory",
+    "fixture/level1/level2/link-to-sibling-directory",
+    "fixture/level1/level2/link-to-sibling-file",
   ],
   Array [
     "fixture/level1/level2/level3/file3a",
@@ -380,13 +370,96 @@ Array [
   Array [
     "fixture/level1/level2/file2a",
     "fixture/level1/level2/file2b",
-    "fixture/level1/level2/link-to-directory",
-    "fixture/level1/level2/link-to-grand-parent-directory",
-    "fixture/level1/level2/link-to-parent-directory",
+    "fixture/level1/level2/link-to-sibling-file",
+    "fixture/level1/level2/link-to-sibling-directory",
   ],
   Array [
     "fixture/level1/level2/level3/file3a",
     "fixture/level1/level2/level3/file3b",
+  ],
+]
+`;
+
+exports[`filesByDirectory options followSymlinks does not resolve symbolic links when followSymlinks is false 1`] = `
+Array [
+  Array [
+    "fixture/level1/level2/level3/file3a",
+    "fixture/level1/level2/level3/file3b",
+  ],
+]
+`;
+
+exports[`filesByDirectory options followSymlinks does not resolve symbolic links when followSymlinks is false 2`] = `
+Array [
+  Array [
+    "fixture/level1/level2/file2a",
+    "fixture/level1/level2/file2b",
+    "fixture/level1/level2/link-to-sibling-directory",
+    "fixture/level1/level2/link-to-sibling-file",
+  ],
+  Array [
+    "fixture/level1/level2/level3/file3a",
+    "fixture/level1/level2/level3/file3b",
+  ],
+]
+`;
+
+exports[`filesByDirectory options followSymlinks does not resolve symbolic links when followSymlinks is false 3`] = `
+Array [
+  Array [
+    "fixture/level1/level2/file2a",
+    "fixture/level1/level2/file2b",
+    "fixture/level1/level2/link-to-sibling-file",
+    "fixture/level1/level2/link-to-sibling-directory",
+  ],
+  Array [
+    "fixture/level1/level2/level3/file3a",
+    "fixture/level1/level2/level3/file3b",
+  ],
+]
+`;
+
+exports[`filesByDirectory options followSymlinks resolves symbolic links when followSymlinks is true 1`] = `
+Array [
+  Array [
+    "fixture/level1/level2/level3/file3a",
+    "fixture/level1/level2/level3/file3b",
+  ],
+]
+`;
+
+exports[`filesByDirectory options followSymlinks resolves symbolic links when followSymlinks is true 2`] = `
+Array [
+  Array [
+    "fixture/level1/level2/file2a",
+    "fixture/level1/level2/file2b",
+    "fixture/level1/level2/link-to-sibling-file",
+  ],
+  Array [
+    "fixture/level1/level2/level3/file3a",
+    "fixture/level1/level2/level3/file3b",
+  ],
+  Array [
+    "fixture/level1/level2/link-to-sibling-directory/file3a",
+    "fixture/level1/level2/link-to-sibling-directory/file3b",
+  ],
+]
+`;
+
+exports[`filesByDirectory options followSymlinks resolves symbolic links when followSymlinks is true 3`] = `
+Array [
+  Array [
+    "fixture/level1/level2/file2a",
+    "fixture/level1/level2/file2b",
+    "fixture/level1/level2/link-to-sibling-file",
+  ],
+  Array [
+    "fixture/level1/level2/level3/file3a",
+    "fixture/level1/level2/level3/file3b",
+  ],
+  Array [
+    "fixture/level1/level2/link-to-sibling-directory/file3a",
+    "fixture/level1/level2/link-to-sibling-directory/file3b",
   ],
 ]
 `;
@@ -407,9 +480,8 @@ Array [
     "fixture/level1/level2",
     "fixture/level1/level2/file2a",
     "fixture/level1/level2/file2b",
-    "fixture/level1/level2/link-to-directory",
-    "fixture/level1/level2/link-to-grand-parent-directory",
-    "fixture/level1/level2/link-to-parent-directory",
+    "fixture/level1/level2/link-to-sibling-directory",
+    "fixture/level1/level2/link-to-sibling-file",
   ],
   Array [
     "fixture/level1/level2/level3",
@@ -425,19 +497,19 @@ Array [
     "fixture/level1",
     "fixture/level1/file1a",
     "fixture/level1/file1b",
+    "fixture/level1/link-to-current-directory",
     "fixture/level1/link-to-descendant-directory",
     "fixture/level1/link-to-descendant-file",
-    "fixture/level1/link-to-sibling-directory",
-    "fixture/level1/link-to-sibling-file",
+    "fixture/level1/link-to-grand-parent-directory",
+    "fixture/level1/link-to-parent-directory",
     "fixture/level1/link-to-unexisting-file",
   ],
   Array [
     "fixture/level1/level2",
     "fixture/level1/level2/file2a",
     "fixture/level1/level2/file2b",
-    "fixture/level1/level2/link-to-directory",
-    "fixture/level1/level2/link-to-grand-parent-directory",
-    "fixture/level1/level2/link-to-parent-directory",
+    "fixture/level1/level2/link-to-sibling-directory",
+    "fixture/level1/level2/link-to-sibling-file",
   ],
   Array [
     "fixture/level1/level2/level3",
@@ -452,9 +524,8 @@ Array [
   Array [
     "fixture/level1/level2/file2a",
     "fixture/level1/level2/file2b",
-    "fixture/level1/level2/link-to-directory",
-    "fixture/level1/level2/link-to-grand-parent-directory",
-    "fixture/level1/level2/link-to-parent-directory",
+    "fixture/level1/level2/link-to-sibling-file",
+    "fixture/level1/level2/link-to-sibling-directory",
   ],
   Array [
     "fixture/level1/level2/level3",
@@ -478,9 +549,8 @@ Array [
   Array [
     "fixture/level1/level2/file2a",
     "fixture/level1/level2/file2b",
-    "fixture/level1/level2/link-to-directory",
-    "fixture/level1/level2/link-to-grand-parent-directory",
-    "fixture/level1/level2/link-to-parent-directory",
+    "fixture/level1/level2/link-to-sibling-directory",
+    "fixture/level1/level2/link-to-sibling-file",
   ],
   Array [
     "fixture/level1/level2/level3/file3a",
@@ -494,18 +564,18 @@ Array [
   Array [
     "fixture/level1/file1a",
     "fixture/level1/file1b",
+    "fixture/level1/link-to-current-directory",
     "fixture/level1/link-to-descendant-directory",
     "fixture/level1/link-to-descendant-file",
-    "fixture/level1/link-to-sibling-directory",
-    "fixture/level1/link-to-sibling-file",
+    "fixture/level1/link-to-grand-parent-directory",
+    "fixture/level1/link-to-parent-directory",
     "fixture/level1/link-to-unexisting-file",
   ],
   Array [
     "fixture/level1/level2/file2a",
     "fixture/level1/level2/file2b",
-    "fixture/level1/level2/link-to-directory",
-    "fixture/level1/level2/link-to-grand-parent-directory",
-    "fixture/level1/level2/link-to-parent-directory",
+    "fixture/level1/level2/link-to-sibling-directory",
+    "fixture/level1/level2/link-to-sibling-file",
   ],
   Array [
     "fixture/level1/level2/level3/file3a",
@@ -519,9 +589,8 @@ Array [
   Array [
     "fixture/level1/level2/file2a",
     "fixture/level1/level2/file2b",
-    "fixture/level1/level2/link-to-directory",
-    "fixture/level1/level2/link-to-grand-parent-directory",
-    "fixture/level1/level2/link-to-parent-directory",
+    "fixture/level1/level2/link-to-sibling-file",
+    "fixture/level1/level2/link-to-sibling-directory",
   ],
   Array [
     "fixture/level1/level2/level3/file3a",

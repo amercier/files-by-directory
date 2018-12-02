@@ -1,5 +1,5 @@
 import '@babel/polyfill'; // Required for NodeJS < 10
-import { basename } from 'path';
+import { basename, dirname } from 'path';
 import { values } from './async';
 import File from './file';
 import {
@@ -17,9 +17,9 @@ const file1aArgs = [file1a, false, false];
 const level1Args = [level1, true, false];
 const level2Args = [level2, true, false];
 const level3Args = [level3, true, false];
-const linkToSiblingDirectoryArgs = [linkToSiblingDirectory, false, true];
-const linkToSiblingFileArgs = [linkToSiblingFile, false, true];
-const linkToUnexistingFileArgs = [linkToUnexistingFile, false, true];
+const linkToSiblingDirectoryArgs = [linkToSiblingDirectory, undefined, true];
+const linkToSiblingFileArgs = [linkToSiblingFile, undefined, true];
+const linkToUnexistingFileArgs = [linkToUnexistingFile, undefined, true];
 const unexistingFileArgs = [unexistingFile, false, false];
 
 describe('File', () => {
@@ -62,7 +62,7 @@ describe('File', () => {
 
   describe('getChildren()', () => {
     it('returns an iterator', () => {
-      const iterator = new File(file1a, false).getChildren();
+      const iterator = new File(...file1aArgs).getChildren();
       expect(iterator.next).toBeFunction();
     });
 
@@ -93,6 +93,51 @@ describe('File', () => {
     });
   });
 
+  describe('followSymbolicLink()', () => {
+    it('returns a Promise', () => {
+      expect(new File(...file1aArgs).followSymbolicLink()).toBeInstanceOf(Promise);
+    });
+
+    it('resolves to the same File instance when file is a file', async () => {
+      const file1aFile = new File(...file1aArgs);
+      await expect(file1aFile.followSymbolicLink()).toResolve();
+      expect(await file1aFile.followSymbolicLink()).toBe(file1aFile);
+    });
+
+    it('resolves to the same File instance when file is a directory', async () => {
+      const level2File = new File(...level2Args);
+      await expect(level2File.followSymbolicLink()).toResolve();
+      expect(await level2File.followSymbolicLink()).toBe(level2File);
+    });
+
+    it('resolves to the same File instance when file does not exist', async () => {
+      const unexistingFileFile = new File(...unexistingFileArgs);
+      await expect(unexistingFileFile.followSymbolicLink()).toResolve();
+      expect(await unexistingFileFile.followSymbolicLink()).toBe(unexistingFileFile);
+    });
+
+    it('resolves to a new File instance when file links to a file', async () => {
+      const linkToSiblingFileFile = new File(...linkToSiblingFileArgs);
+      await expect(linkToSiblingFileFile.followSymbolicLink()).toResolve();
+      expect(await linkToSiblingFileFile.followSymbolicLink()).not.toBe(linkToSiblingFileFile);
+      expect(await linkToSiblingFileFile.followSymbolicLink()).toMatchSnapshot();
+    });
+
+    it('resolves to a new File instance when file links to a directory', async () => {
+      const linkToSiblingDirectoryFile = new File(...linkToSiblingDirectoryArgs);
+      await expect(linkToSiblingDirectoryFile.followSymbolicLink()).toResolve();
+      expect(await linkToSiblingDirectoryFile.followSymbolicLink()).not.toBe(
+        linkToSiblingDirectoryFile,
+      );
+      expect(await linkToSiblingDirectoryFile.followSymbolicLink()).toMatchSnapshot();
+    });
+
+    it('rejects when file links to a non-existing file', async () => {
+      const linkToUnexistingFileFile = new File(...linkToUnexistingFileArgs);
+      await expect(linkToUnexistingFileFile.followSymbolicLink()).toReject();
+    });
+  });
+
   describe('static fromDirent()', () => {
     const argsToDirent = ([path, isDirectory, isSymbolicLink]) => ({
       name: basename(path),
@@ -112,49 +157,45 @@ describe('File', () => {
     });
 
     it('it passes given path and name', () => {
-      expect(File.fromDirent(level1, file1aDirent).path).toBe(file1a);
-      expect(File.fromDirent(level1, level2Dirent).path).toBe(level2);
-      expect(File.fromDirent(level2, level3Dirent).path).toBe(level3);
-      expect(File.fromDirent(level1, unexistingFileDirent).path).toBe(unexistingFile);
-      expect(File.fromDirent(level1, linkToSiblingFileDirent).path).toBe(linkToSiblingFile);
-      expect(File.fromDirent(level1, linkToSiblingDirectoryDirent).path).toBe(
-        linkToSiblingDirectory,
-      );
-      expect(File.fromDirent(level1, linkToUnexistingFileDirent).path).toBe(linkToUnexistingFile);
+      [
+        [file1a, file1aDirent],
+        [level2, level2Dirent],
+        [level3, level3Dirent],
+        [unexistingFile, unexistingFileDirent],
+        [linkToSiblingFile, linkToSiblingFileDirent],
+        [linkToSiblingDirectory, linkToSiblingDirectoryDirent],
+        [linkToUnexistingFile, linkToUnexistingFileDirent],
+      ].forEach(([path, dirent]) => {
+        expect(File.fromDirent(dirname(path), dirent).path).toBe(path);
+      });
     });
 
     it('it uses given dirent to determine isDirectory', () => {
-      expect(File.fromDirent(level1, file1aDirent).isDirectory).toBe(file1aArgs[1]);
-      expect(File.fromDirent(level1, level2Dirent).isDirectory).toBe(level2Args[1]);
-      expect(File.fromDirent(level2, level3Dirent).isDirectory).toBe(level3Args[1]);
-      expect(File.fromDirent(level1, linkToUnexistingFileDirent).isDirectory).toBe(
-        linkToUnexistingFileArgs[1],
-      );
-      expect(File.fromDirent(level1, linkToSiblingFileDirent).isDirectory).toBe(
-        linkToSiblingFileArgs[1],
-      );
-      expect(File.fromDirent(level1, linkToSiblingDirectoryDirent).isDirectory).toBe(
-        linkToSiblingDirectoryArgs[1],
-      );
-      expect(File.fromDirent(level1, unexistingFileDirent).isDirectory).toBe(unexistingFileArgs[1]);
+      [
+        [file1a, file1aDirent, file1aArgs[1]],
+        [level2, level2Dirent, level2Args[1]],
+        [level3, level3Dirent, level3Args[1]],
+        [unexistingFile, unexistingFileDirent, unexistingFileArgs[1]],
+        [linkToSiblingFile, linkToSiblingFileDirent, linkToSiblingFileArgs[1]],
+        [linkToSiblingDirectory, linkToSiblingDirectoryDirent, linkToSiblingDirectoryArgs[1]],
+        [linkToUnexistingFile, linkToUnexistingFileDirent, linkToUnexistingFileArgs[1]],
+      ].forEach(([path, dirent, isDirectory]) => {
+        expect(File.fromDirent(dirname(path), dirent).isDirectory).toBe(isDirectory);
+      });
     });
 
     it('it uses given dirent to determine isSymbolicLink', () => {
-      expect(File.fromDirent(level1, file1aDirent).isSymbolicLink).toBe(file1aArgs[2]);
-      expect(File.fromDirent(level1, level2Dirent).isSymbolicLink).toBe(level2Args[2]);
-      expect(File.fromDirent(level2, level3Dirent).isSymbolicLink).toBe(level3Args[2]);
-      expect(File.fromDirent(level1, unexistingFileDirent).isSymbolicLink).toBe(
-        unexistingFileArgs[2],
-      );
-      expect(File.fromDirent(level1, linkToSiblingFileDirent).isSymbolicLink).toBe(
-        linkToSiblingFileArgs[2],
-      );
-      expect(File.fromDirent(level1, linkToSiblingDirectoryDirent).isSymbolicLink).toBe(
-        linkToSiblingDirectoryArgs[2],
-      );
-      expect(File.fromDirent(level1, linkToUnexistingFileDirent).isSymbolicLink).toBe(
-        linkToUnexistingFileArgs[2],
-      );
+      [
+        [file1a, file1aDirent, file1aArgs[2]],
+        [level2, level2Dirent, level2Args[2]],
+        [level3, level3Dirent, level3Args[2]],
+        [unexistingFile, unexistingFileDirent, unexistingFileArgs[2]],
+        [linkToSiblingFile, linkToSiblingFileDirent, linkToSiblingFileArgs[2]],
+        [linkToSiblingDirectory, linkToSiblingDirectoryDirent, linkToSiblingDirectoryArgs[2]],
+        [linkToUnexistingFile, linkToUnexistingFileDirent, linkToUnexistingFileArgs[2]],
+      ].forEach(([path, dirent, isSymbolicLink]) => {
+        expect(File.fromDirent(dirname(path), dirent).isSymbolicLink).toBe(isSymbolicLink);
+      });
     });
   });
 

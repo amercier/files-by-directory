@@ -33,19 +33,14 @@ Array [
     "path": "fixture/level1/level2/level3",
   },
   File {
-    "isDirectory": false,
+    "isDirectory": undefined,
     "isSymbolicLink": true,
-    "path": "fixture/level1/level2/link-to-directory",
+    "path": "fixture/level1/level2/link-to-sibling-directory",
   },
   File {
-    "isDirectory": false,
+    "isDirectory": undefined,
     "isSymbolicLink": true,
-    "path": "fixture/level1/level2/link-to-grand-parent-directory",
-  },
-  File {
-    "isDirectory": false,
-    "isSymbolicLink": true,
-    "path": "fixture/level1/level2/link-to-parent-directory",
+    "path": "fixture/level1/level2/link-to-sibling-file",
   },
 ]
 `;
@@ -68,27 +63,32 @@ Array [
     "path": "fixture/level1/level2",
   },
   File {
-    "isDirectory": false,
+    "isDirectory": undefined,
+    "isSymbolicLink": true,
+    "path": "fixture/level1/link-to-current-directory",
+  },
+  File {
+    "isDirectory": undefined,
     "isSymbolicLink": true,
     "path": "fixture/level1/link-to-descendant-directory",
   },
   File {
-    "isDirectory": false,
+    "isDirectory": undefined,
     "isSymbolicLink": true,
     "path": "fixture/level1/link-to-descendant-file",
   },
   File {
-    "isDirectory": false,
+    "isDirectory": undefined,
     "isSymbolicLink": true,
-    "path": "fixture/level1/link-to-sibling-directory",
+    "path": "fixture/level1/link-to-grand-parent-directory",
   },
   File {
-    "isDirectory": false,
+    "isDirectory": undefined,
     "isSymbolicLink": true,
-    "path": "fixture/level1/link-to-sibling-file",
+    "path": "fixture/level1/link-to-parent-directory",
   },
   File {
-    "isDirectory": false,
+    "isDirectory": undefined,
     "isSymbolicLink": true,
     "path": "fixture/level1/link-to-unexisting-file",
   },
@@ -126,19 +126,14 @@ Array [
       "path": "fixture/level1/level2/file2b",
     },
     File {
-      "isDirectory": false,
+      "isDirectory": undefined,
       "isSymbolicLink": true,
-      "path": "fixture/level1/level2/link-to-directory",
+      "path": "fixture/level1/level2/link-to-sibling-directory",
     },
     File {
-      "isDirectory": false,
+      "isDirectory": undefined,
       "isSymbolicLink": true,
-      "path": "fixture/level1/level2/link-to-grand-parent-directory",
-    },
-    File {
-      "isDirectory": false,
-      "isSymbolicLink": true,
-      "path": "fixture/level1/level2/link-to-parent-directory",
+      "path": "fixture/level1/level2/link-to-sibling-file",
     },
   ],
   Array [
@@ -170,27 +165,32 @@ Array [
       "path": "fixture/level1/file1b",
     },
     File {
-      "isDirectory": false,
+      "isDirectory": undefined,
+      "isSymbolicLink": true,
+      "path": "fixture/level1/link-to-current-directory",
+    },
+    File {
+      "isDirectory": undefined,
       "isSymbolicLink": true,
       "path": "fixture/level1/link-to-descendant-directory",
     },
     File {
-      "isDirectory": false,
+      "isDirectory": undefined,
       "isSymbolicLink": true,
       "path": "fixture/level1/link-to-descendant-file",
     },
     File {
-      "isDirectory": false,
+      "isDirectory": undefined,
       "isSymbolicLink": true,
-      "path": "fixture/level1/link-to-sibling-directory",
+      "path": "fixture/level1/link-to-grand-parent-directory",
     },
     File {
-      "isDirectory": false,
+      "isDirectory": undefined,
       "isSymbolicLink": true,
-      "path": "fixture/level1/link-to-sibling-file",
+      "path": "fixture/level1/link-to-parent-directory",
     },
     File {
-      "isDirectory": false,
+      "isDirectory": undefined,
       "isSymbolicLink": true,
       "path": "fixture/level1/link-to-unexisting-file",
     },
@@ -207,19 +207,14 @@ Array [
       "path": "fixture/level1/level2/file2b",
     },
     File {
-      "isDirectory": false,
+      "isDirectory": undefined,
       "isSymbolicLink": true,
-      "path": "fixture/level1/level2/link-to-directory",
+      "path": "fixture/level1/level2/link-to-sibling-directory",
     },
     File {
-      "isDirectory": false,
+      "isDirectory": undefined,
       "isSymbolicLink": true,
-      "path": "fixture/level1/level2/link-to-grand-parent-directory",
-    },
-    File {
-      "isDirectory": false,
-      "isSymbolicLink": true,
-      "path": "fixture/level1/level2/link-to-parent-directory",
+      "path": "fixture/level1/level2/link-to-sibling-file",
     },
   ],
   Array [
