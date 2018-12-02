@@ -75,7 +75,40 @@ for await (const files of filesByDirectory(['level1'])) {
 **Notes:**
 
 - If a path is encountered twice, it is only generated once.
-- Symbolic links are treated as regular files, even though they link to directories.
+- By default symbolic links are treated as regular files, even though they link to directories.
+
+<details>
+  <summary><code>options.followSymlinks</code> (default: <code>false</code>)</summary>
+
+When set to `true`, resolves any symbolic link to the directory it's pointing to, while preserving the link's path.
+
+```bash
+# Directory structure:
+level1
+├── level2
+│   ├── file2a
+│   └── file2b
+├── file1a
+├── link-to-directory -> level2
+└── link-to-file -> file1a
+```
+
+```js
+for await (const files of filesByDirectory(['level1']/*, { followSymlinks: false }*/} )) {
+  console.log(files);
+}
+// [ 'level1/file1a', 'level1/link-to-directory', 'link-to-file' ]
+// [ 'level1/level2/file2a', 'level1/level2/file2b' ]
+
+for await (const files of filesByDirectory(['level1'], { followSymlinks: true })) {
+  console.log(files);
+}
+// [ 'level1/file1a', 'level1/link-to-file' ]
+// [ 'level1/level2/file2a', 'level1/level2/file2b' ]
+// [ 'level1/link-to-directory/file2a', 'level1/link-to-directory/file2b' ]
+```
+
+</details>
 
 <details>
   <summary><code>options.excludeSymlinks</code> (default: <code>false</code>)</summary>
