@@ -5,6 +5,10 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+(nothing)
+
+## [v0.3.0] - 2018-12-02
+
 - `directoriesFirst` option - [#8]
 - `showDirectories` option - [#9]
 - `followSymlinks` option - [#11]
@@ -56,4 +60,5 @@ All notable changes to this project will be documented in this file. The format 
 [v0.1.1]: https://github.com/amercier/files-by-directory/compare/v0.1.0...v0.1.1
 [v0.1.2]: https://github.com/amercier/files-by-directory/compare/v0.1.1...v0.1.2
 [v0.2.0]: https://github.com/amercier/files-by-directory/compare/v0.1.2...v0.2.0
-[unreleased]: https://github.com/amercier/files-by-directory/compare/v0.2.0...HEAD
+[v0.3.0]: https://github.com/amercier/files-by-directory/compare/v0.2.0...v0.3.0
+[unreleased]: https://github.com/amercier/files-by-directory/compare/v0.3.0...HEAD
