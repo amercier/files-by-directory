@@ -1,7 +1,7 @@
 import regeneratorRuntime from 'regenerator-runtime';
 import { join } from 'path';
 import { asyncMap } from './async';
-import { lStat, readDir } from './fs';
+import { lStat, readDir, stat } from './fs';
 
 /**
  * File
@@ -44,6 +44,19 @@ export default class File {
   }
 
   /**
+   * Resolve symbolic link.
+   *
+   * @returns {Promise<File>} A new File instance if the current file is a symbolic link and has not
+   * been resolved yet. Otherwise, returns this file.
+   */
+  async followSymbolicLink() {
+    if (this.isSymbolicLink && this.isDirectory === undefined) {
+      return this.constructor.fromPath(this.path, true);
+    }
+    return this;
+  }
+
+  /**
    * Create an instance of File from a `fs.Dirent` object of a file.
    *
    * @param {string} directory Parent directory of the file.
@@ -67,8 +80,8 @@ export default class File {
    * @param {string} path Path to the file.
    * @returns {Promise<File>} An instance of File representing the file.
    */
-  static async fromPath(path) {
-    const stats = await lStat(path);
+  static async fromPath(path, followSymbolicLink = false) {
+    const stats = await (followSymbolicLink ? stat : lStat)(path);
     return new this(
       path,
       stats.isSymbolicLink() ? undefined : stats.isDirectory(),

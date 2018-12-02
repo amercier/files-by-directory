@@ -1,5 +1,21 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`File followSymbolicLink() resolves to a new File instance when file links to a directory 1`] = `
+File {
+  "isDirectory": true,
+  "isSymbolicLink": false,
+  "path": "fixture/level1/level2/link-to-sibling-directory",
+}
+`;
+
+exports[`File followSymbolicLink() resolves to a new File instance when file links to a file 1`] = `
+File {
+  "isDirectory": false,
+  "isSymbolicLink": false,
+  "path": "fixture/level1/level2/link-to-sibling-file",
+}
+`;
+
 exports[`File getChildren() generates asynchronously one File instance per child when file is a directory 1`] = `
 Array [
   File {

@@ -62,7 +62,7 @@ describe('File', () => {
 
   describe('getChildren()', () => {
     it('returns an iterator', () => {
-      const iterator = new File(file1a, false).getChildren();
+      const iterator = new File(...file1aArgs).getChildren();
       expect(iterator.next).toBeFunction();
     });
 
@@ -90,6 +90,51 @@ describe('File', () => {
 
     it('generates a rejected Promise when file links to a non-existing file', async () => {
       await expect(values(new File(...linkToUnexistingFile).getChildren())).toReject();
+    });
+  });
+
+  describe('followSymbolicLink()', () => {
+    it('returns a Promise', () => {
+      expect(new File(...file1aArgs).followSymbolicLink()).toBeInstanceOf(Promise);
+    });
+
+    it('resolves to the same File instance when file is a file', async () => {
+      const file1aFile = new File(...file1aArgs);
+      await expect(file1aFile.followSymbolicLink()).toResolve();
+      expect(await file1aFile.followSymbolicLink()).toBe(file1aFile);
+    });
+
+    it('resolves to the same File instance when file is a directory', async () => {
+      const level2File = new File(...level2Args);
+      await expect(level2File.followSymbolicLink()).toResolve();
+      expect(await level2File.followSymbolicLink()).toBe(level2File);
+    });
+
+    it('resolves to the same File instance when file does not exist', async () => {
+      const unexistingFileFile = new File(...unexistingFileArgs);
+      await expect(unexistingFileFile.followSymbolicLink()).toResolve();
+      expect(await unexistingFileFile.followSymbolicLink()).toBe(unexistingFileFile);
+    });
+
+    it('resolves to a new File instance when file links to a file', async () => {
+      const linkToSiblingFileFile = new File(...linkToSiblingFileArgs);
+      await expect(linkToSiblingFileFile.followSymbolicLink()).toResolve();
+      expect(await linkToSiblingFileFile.followSymbolicLink()).not.toBe(linkToSiblingFileFile);
+      expect(await linkToSiblingFileFile.followSymbolicLink()).toMatchSnapshot();
+    });
+
+    it('resolves to a new File instance when file links to a directory', async () => {
+      const linkToSiblingDirectoryFile = new File(...linkToSiblingDirectoryArgs);
+      await expect(linkToSiblingDirectoryFile.followSymbolicLink()).toResolve();
+      expect(await linkToSiblingDirectoryFile.followSymbolicLink()).not.toBe(
+        linkToSiblingDirectoryFile,
+      );
+      expect(await linkToSiblingDirectoryFile.followSymbolicLink()).toMatchSnapshot();
+    });
+
+    it('rejects when file links to a non-existing file', async () => {
+      const linkToUnexistingFileFile = new File(...linkToUnexistingFileArgs);
+      await expect(linkToUnexistingFileFile.followSymbolicLink()).toReject();
     });
   });
 
