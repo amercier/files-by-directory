@@ -1,3 +1,4 @@
+import { existsSync, mkdirSync } from 'fs';
 import { join, relative } from 'path';
 
 const cwd = process.cwd();
@@ -24,3 +25,10 @@ export const level1 = fixture('level1');
 export const file1a = fixture('level1/file1a');
 export const unexistingFile = fixture('level1/unexisting-file');
 export const linkToUnexistingFile = fixture('level1/link-to-unexisting-file');
+
+export const emptyDirectory = fixture('empty-directory');
+
+// Must create `emptyDirectory` on-the-fly because Git doesn't allow empty directories
+if (!existsSync(emptyDirectory)) {
+  mkdirSync(emptyDirectory);
+}

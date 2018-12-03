@@ -2,7 +2,15 @@ import '@babel/polyfill'; // Required for NodeJS < 10
 import { values } from './async';
 import getFilesByDirectory from './files-by-directory';
 import defaults from './options';
-import { file1a, level1, level2, level2Files, level3, level3Files } from '../fixture';
+import {
+  file1a,
+  level1,
+  level2,
+  level2Files,
+  level3,
+  level3Files,
+  emptyDirectory,
+} from '../fixture';
 
 /** @test {filesByDirectory} */
 describe('filesByDirectory', () => {
@@ -120,6 +128,32 @@ describe('filesByDirectory', () => {
         expect(await values(getFilesByDirectory([level2], options))).toMatchSnapshot();
         expect(
           await values(getFilesByDirectory([level3, ...level2Files], options)),
+        ).toMatchSnapshot();
+      });
+    });
+
+    describe('skipEmptyDirectories', () => {
+      it('is true by default', () => {
+        expect(defaults.skipEmptyDirectories).toBe(true);
+      });
+
+      it('skips empty directories when skipEmptyDirectories is true', async () => {
+        expect(
+          await values(
+            getFilesByDirectory([emptyDirectory, level3], {
+              skipEmptyDirectories: true,
+            }),
+          ),
+        ).toMatchSnapshot();
+      });
+
+      it('includes empty directories when skipEmptyDirectories is false', async () => {
+        expect(
+          await values(
+            getFilesByDirectory([emptyDirectory, level3], {
+              skipEmptyDirectories: false,
+            }),
+          ),
         ).toMatchSnapshot();
       });
     });
