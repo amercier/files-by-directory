@@ -218,6 +218,53 @@ for await (const [directory, ...files] of filesByDirectory(['level1'], { showDir
 
 </details>
 
+<details>
+  <summary><code>options.skipEmptyDirectories</code> (default: <code>true</code>)</summary>
+
+When set to `false`, includes empty files lists.
+
+```bash
+# Directory structure:
+level1
+├── level2a (only directories)
+│   └── level3
+│       └── file3a
+├── level2b
+│   └── (empty)
+└── file1a
+```
+
+```js
+for await (const files of filesByDirectory(['level1']/*, { skipEmptyDirectories: true }*/} )) {
+  console.log(files);
+}
+// [ 'level1/file1a' ]
+// [ 'level1/level2a/level3/file3a' ]
+
+for await (const files of filesByDirectory(['level1'], { skipEmptyDirectories: false } )) {
+  console.log(files);
+}
+// [ 'level1/file1a' ]
+// []
+// [ 'level1/level2a/level3/file3a' ]
+// []
+```
+
+**Note:** this can be useful when combined with `showDirectories` option:
+
+```js
+const options = { skipEmptyDirectories: false, showDirectories: true };
+for await (const [directory, ...files] of filesByDirectory(['level1'], options)) {
+  console.log(directory, files);
+}
+// level1 [ 'level1/file1a' ]
+// level1/level2a []
+// level1/level2a/level3 [ 'level1/level2a/level3/file3a' ]
+// level1/empty-directory []
+```
+
+</details>
+
 ## Asynchronous iteration
 
 [Asynchronous iteration] using `for-await-of` syntax requires Node 10+. For older version of NodeJS, either use:

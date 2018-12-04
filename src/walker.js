@@ -75,7 +75,7 @@ export default class Walker {
     }
 
     // Process regular files, if any
-    if (regularFiles.length > 0) {
+    if (regularFiles.length > 0 || !this.skipEmptyDirectories) {
       yield* filesCallback(regularFiles);
     }
 

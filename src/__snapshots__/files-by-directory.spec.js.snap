@@ -598,3 +598,22 @@ Array [
   ],
 ]
 `;
+
+exports[`filesByDirectory options skipEmptyDirectories includes empty directories when skipEmptyDirectories is false 1`] = `
+Array [
+  Array [],
+  Array [
+    "fixture/level1/level2/level3/file3a",
+    "fixture/level1/level2/level3/file3b",
+  ],
+]
+`;
+
+exports[`filesByDirectory options skipEmptyDirectories skips empty directories when skipEmptyDirectories is true 1`] = `
+Array [
+  Array [
+    "fixture/level1/level2/level3/file3a",
+    "fixture/level1/level2/level3/file3b",
+  ],
+]
+`;
