@@ -14,7 +14,8 @@
   },
   "scripts": {
     "build:clean": "rimraf dist",
-    "build:transpile": "babel --ignore '**/*.spec.js' -d dist src",
+    "build:cjs": "babel --ignore '**/*.spec.js' --env-name CJS -d dist/cjs src",
+    "build:esm": "babel --ignore '**/*.spec.js' --env-name ESM -d dist/esm src",
     "build": "run-s build:*",
     "prepublishOnly": "run-s build",
     "doc:clean": "rimraf esdoc",
@@ -30,7 +31,8 @@
   "files": [
     "dist"
   ],
-  "main": "dist/index.js",
+  "main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "keywords": [
     "list",
     "scan",
@@ -98,7 +100,35 @@
           }
         }
       ]
-    ]
+    ],
+    "env": {
+      "CJS": {
+        "presets": [
+          [
+            "@babel/preset-env",
+            {
+              "targets": {
+                "node": "6"
+              },
+              "modules": "commonjs"
+            }
+          ]
+        ]
+      },
+      "ESM": {
+        "presets": [
+          [
+            "@babel/preset-env",
+            {
+              "targets": {
+                "node": "6"
+              },
+              "modules": false
+            }
+          ]
+        ]
+      }
+    }
   },
   "jest": {
     "testEnvironment": "node",
