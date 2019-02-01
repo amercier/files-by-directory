@@ -5,9 +5,14 @@ All notable changes to this project will be documented in this file. The format 
 
 ## [Unreleased]
 
+### Added
+
+- Distribute ESM modules using `export` entry - [#14]
 - `skipEmptyDirectories` option - [#12]
 
 ## [v0.3.0] - 2018-12-02
+
+### Added
 
 - `directoriesFirst` option - [#8]
 - `showDirectories` option - [#9]
@@ -57,6 +62,7 @@ All notable changes to this project will be documented in this file. The format 
 [#9]: https://github.com/amercier/files-by-directory/pull/9
 [#11]: https://github.com/amercier/files-by-directory/pull/11
 [#12]: https://github.com/amercier/files-by-directory/pull/12
+[#14]: https://github.com/amercier/files-by-directory/pull/14
 [v0.1.0]: https://github.com/amercier/files-by-directory/compare/v0.0.0...v0.1.0
 [v0.1.1]: https://github.com/amercier/files-by-directory/compare/v0.1.0...v0.1.1
 [v0.1.2]: https://github.com/amercier/files-by-directory/compare/v0.1.1...v0.1.2
