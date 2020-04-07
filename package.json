@@ -45,7 +45,7 @@
     "of"
   ],
   "dependencies": {
-    "escape-string-regexp": "^1.0.5",
+    "escape-string-regexp": "^3.0.0",
     "regenerator-runtime": "^0.13.1"
   },
   "devDependencies": {
